@@ -1,64 +1,92 @@
 <script>
 import {
-    tweened
-} from 'svelte/motion';
-import {
-    cubicOut
-} from 'svelte/easing';
+    dndzone
+} from 'svelte-dnd-action';
 import {
     onMount
 } from 'svelte';
 import {
-    questions
+    statements
 } from '../stores.js';
-
 import confetti from 'canvas-confetti';
 
-const progress = tweened(0, {
-    duration: 400,
-    easing: cubicOut
-});
-
-let selectedQuestion = null;
-let selectedPercent = 0;
-let closestPercent = null;
-let disableBelow = null;
-let disableAbove = null;
+let selectedStatements = [];
 let guessCount = 0;
 let gameWon = false;
+let correctOrder = [];
 
 onMount(() => {
-    questions.subscribe(data => {
-        if (data.length > 0) {
-            selectedQuestion = data[Math.floor(Math.random() * data.length)];
+    statements.subscribe(data => {
+        if (data.length >= 5) {
+            let indices = new Set();
+            while (indices.size < 5) {
+                indices.add(Math.floor(Math.random() * data.length));
+            }
+            selectedStatements = [...indices].map(index => ({
+                ...data[index],
+                id: index,
+                correct: false,
+                feedback: [],
+            }));
+            correctOrder = [...selectedStatements].sort((a, b) => b.answer - a.answer);
         }
     });
 });
 
-function setProgress(percent) {
-    progress.set(percent);
-    selectedPercent = percent;
-}
-
 function handleSubmit() {
     guessCount += 1;
-    const answer = parseFloat(selectedQuestion.answer);
-    const options = Array.from({ length: 21 }, (_, i) => i * 0.05);
 
-    closestPercent = options.reduce((prev, curr) => 
-        Math.abs(curr - answer) < Math.abs(prev - answer) ? curr : prev
-    );
+    const updatedStatements = selectedStatements.map((statement, index) => {
+        const isCorrect = correctOrder[index].id === statement.id;
 
-    if (closestPercent === selectedPercent) {
-        launchConfetti();
-        gameWon = true;
-    } else {
-        if (answer > selectedPercent) {
-            disableBelow = selectedPercent;
-        } else {
-            disableAbove = selectedPercent;
+        // Initialize the feedback array if it doesn't exist
+        if (!statement.feedback) {
+            statement.feedback = [];
         }
+
+        // Push new feedback into the feedback array, now as an object indicating correctness
+        statement.feedback.push({
+            isCorrect
+        });
+
+        return {
+            ...statement,
+            correct: isCorrect,
+        };
+    });
+
+    selectedStatements = [...updatedStatements];
+
+    if (selectedStatements.every(statement => statement.correct)) {
+        gameWon = true;
+        launchConfetti();
     }
+}
+
+function handleDrop(event) {
+    const newOrder = event.detail.items;
+    let result = [];
+
+    // Initialize the result array with placeholders for the 'correct' items
+    selectedStatements.forEach((item, index) => {
+        result[index] = item.correct ? item : undefined;
+    });
+
+    // Process the new order, skipping 'correct' items
+    newOrder.forEach((item, newIndex) => {
+        if (!item.correct) {
+            // Find the next available spot that is not a 'correct' item
+            let currentIndex = result.findIndex((el, idx) => el === undefined && !selectedStatements[idx].correct);
+            if (currentIndex !== -1) {
+                result[currentIndex] = item;
+            }
+        }
+    });
+
+    // Remove any undefined placeholders left in the result
+    result = result.filter(item => item !== undefined);
+
+    selectedStatements = result;
 }
 
 function launchConfetti() {
@@ -71,59 +99,56 @@ function launchConfetti() {
     });
 }
 
-function shareScore() {
-    const message = `I guessed the correct answer in ${guessCount} attempts on this quiz! Can you beat my score?`;
-    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-}
-
 </script>
 
-{#if gameWon}
-<div class="congrats-screen">
-    <div class="congrats-content">
-        <h1>Congratulations!</h1>
-        <p>You guessed the correct answer in {guessCount} attempts.</p>
-        <button on:click={shareScore}>Share with a friend</button>
-    </div>
-</div>
-{:else}
 <div class="container">
-    {#if selectedQuestion}
-    <div class="question-container">
-        <h1>{selectedQuestion.question}</h1>
+    {#if gameWon}
+    <div class="congrats-screen">
+        <div class="congrats-content">
+            <h1>Congratulations!</h1>
+            <p>You guessed the correct answer in {guessCount} attempts.</p>
+        </div>
     </div>
-    {/if}
-    <progress value={$progress} max="1"></progress>
-    <div class="buttons-container">
-        {#each Array.from({ length: 21 }, (_, i) => i * 0.05) as percent (percent)}
-        <button
-            class:selected={percent === selectedPercent}
-            class:disabled={disableBelow !== null && percent <= disableBelow || disableAbove !== null && percent >= disableAbove}
-            on:click={() => setProgress(percent)}
-            disabled={disableBelow !== null && percent <= disableBelow || disableAbove !== null && percent >= disableAbove}
-            >
-            {Math.round(percent * 100)}%
-        </button>
+    {:else if guessCount < 5}
+    <div class='title-container'>
+        <h3>Rank the statements by dragging and dropping to the correct positions...</h3>
+    </div>
+    <div class="arrow-indicator high">▲ High</div>
+    <div class="statement-section" use:dndzone={{ items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
+        {#each selectedStatements as statement (statement.id)}
+        <div class="statement-container {statement.correct ? 'correct' : ''}">
+            <div class="badge-container">
+                {#each Array(5) as _, index (index)}
+                <div class="feedback-badge {statement.feedback[index] ? (statement.feedback[index].isCorrect ? 'correct' : 'incorrect') : 'default'}"></div>
+                {/each}
+            </div>
+            <p>{statement.statement}</p>
+            {#if statement.correct}
+            <div class="percentage-badge">{Math.round(statement.answer * 100)}%</div>
+            {/if}
+        </div>
         {/each}
     </div>
-
-    <button class="submit-button" on:click={handleSubmit}>Submit</button>
-    <div class="guess-count">Guesses: {guessCount}</div>
+    <div class="arrow-indicator low">▼ Low</div>
+    <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
+    <div class="guess-count">Attempts: {guessCount}</div>
+    {:else}
+    <div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
+        <div class="congrats-content">
+            <h1>Better luck next time!</h1>
+        </div>
+    </div>
+    {/if}
 </div>
-{/if}
-        
+
 <style>
 :global(body, html) {
     height: 100%;
-    width: 100%;
     margin: 0;
     padding: 0;
     background-color: #121212;
     color: #fff;
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
 }
 
 .container {
@@ -133,105 +158,152 @@ function shareScore() {
     justify-content: center;
     min-height: 100vh;
     width: 100%;
+    /* Full width */
 }
 
-progress {
-    display: block;
+.title-container {
     width: 80%;
-    height: 20px;
-    background-color: #333;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #333;
-}
-
-progress::-webkit-progress-value {
-    background-color: #e5e832;
-    border-radius: 10px;
-}
-
-progress::-moz-progress-bar {
-    background-color: #1db954;
-    border-radius: 10px;
-}
-
-.buttons-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
-    gap: 10px;
-    width: 80%;
-    padding: 0;
-    margin: 20px;
-}
-
-button {
-    padding: 10px 0;
-    border: 1px solid #555;
-    background-color: #222;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button.selected {
-    background-color: #555;
-    color: #ddd;
-    border-color: #e5e832;
-}
-
-button:hover {
-    background-color: #333;
-}
-
-button.disabled,
-button:disabled {
-    background-color: #757575;
-    color: #9e9e9e;
-    border-color: #616161;
-    cursor: not-allowed;
-}
-
-button:hover:not(:disabled) {
-    background-color: #333;
-}
-
-@media (max-width: 600px) {
-    .buttons-container {
-        grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
-    }
-}
-
-.question-container {
     text-align: center;
-    width: 80%;
-    margin-bottom: 50px;
 }
 
-.question-container h1 {
-    font-size: 28px;
-    color: #ECEFF1;
-    margin: 0;
-    padding: 0;
+.statement-section {
+    width: 100%;
+    /* Adjust width as needed for mobile responsiveness */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.arrow-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Adjust size as needed */
+    color: #FFF; /* Adjust color as needed */
+    margin: 10px 0; /* Spacing above and below the arrows */
+}
+
+.statement-container {
+    position: relative;
+    display: flex;
+    /* This makes it a flex container */
+    align-items: center;
+    /* This vertically centers the content */
+    justify-content: center;
+    /* This horizontally centers the content */
+    width: 80%;
+    max-width: 600px;
+    height: 30px;
+    /* Note: You might need to adjust or remove the fixed height to better fit the content */
+    margin: 15px 0;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    text-align: center;
+    /* This ensures text is centered, useful if the text wraps to a new line */
+}
+
+.statement-container.correct {
+    border: 2px solid #45a049;
+    /* Green background for correct statements */
+}
+
+.correct {
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.statement-container p {
+    margin: 0;
+    /* Keeps the paragraph snug */
+    font-size: 18px;
+    /* Ensure you add 'px' to define the unit */
+}
+
+.statement-container:active {
+    cursor: grabbing;
+}
+
+.percentage-badge {
+    position: absolute;
+    top: 0px;
+    /* Adjust this value as needed */
+    right: 15px;
+    /* Adjust this value as needed */
+    background-color: #ffffff;
+    /* White background for the badge */
+    color: #000000;
+    /* Text color */
+    padding: 5px 10px;
+    /* Padding inside the badge */
+    border-radius: 10px;
+    /* Rounded corners for the badge */
+    font-weight: bold;
+    /* Optional: makes the percentage text bold */
+    z-index: 2;
+    /* Ensure it's above the feedback badges if they overlap */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Optional: adds a subtle shadow */
+    transform: translateY(-50%) translateX(50%);
+    /* Adjusts the badge to partially stick out */
+    white-space: nowrap;
+    /* Prevents the text from wrapping */
+}
+
+.badge-container {
+    position: absolute;
+    top: 0px;
+    left: 0px; /* Adjust this as needed */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 5px; /* Adjust padding for better spacing */
+    background: #505050; /* Starting color for gradient */
+    background: linear-gradient(to right, #505050, #3c3c3c); /* Subtle gradient for depth */
+    border-radius: 10px; /* More pronounced rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Refined shadow for a softer look */
+    transform: translateY(-70%); /* Center vertically relative to the statement's top edge */
+    z-index: 10; /* Ensure it sits above other elements */
+}
+
+.feedback-badge {
+    width: 16px; /* Slightly smaller for a more refined look */
+    height: 16px;
+    border-radius: 50%; /* Fully rounded to create circle shapes */
+    background-color: #a9a9a9; /* Default dark grey for unguessed badges */
+    margin: 0 4px; /* Adjust margin for better spacing */
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* When a badge is correct or incorrect, change the background color */
+.feedback-badge.correct {
+    background-color: #4CAF50; /* Green for correct */
+}
+
+.feedback-badge.incorrect {
+    background-color: #f44336; /* Red for incorrect */
+}
+
+/* Ensure the default badge does not interfere with the correct/incorrect badges */
+.default {
+    background-color: #a9a9a9; /* Same as initial badge color */
+}
+
 
 .submit-button {
-    padding: 10px 30px;
-    font-size: 20px;
-    font-weight: 700;
+    padding: 15px 30px;
+    margin: 20px 0;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    outline: none;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
 .submit-button:hover {
@@ -240,7 +312,64 @@ button:hover:not(:disabled) {
 
 .guess-count {
     color: #fff;
+}
+
+.congrats-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.congrats-content {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.submit-button {
+    padding: 10px 30px;
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.guess-count {
     margin-top: 10px;
+    color: #fff;
+}
+
+/* Customizing the scrollbar for the draggable area, if needed */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .congrats-screen {
