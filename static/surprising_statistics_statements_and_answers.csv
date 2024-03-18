@@ -1,21 +1,111 @@
 statement,answer,source
-Percentage of the Sahara Desert covered by sand dunes.,.25,National Geographic
-Percentage of the world's population with blue eyes.,.08,World Atlas
-Percentage of the world's currency that is physical money.,.08,Federal Reserve
-Percentage of the world’s oxygen that comes from the ocean.,.5,National Oceanographic and Atmospheric Administration
-Percentage of known marine species affected by ocean acidification.,.3,United Nations
-Percentage of people living in the Southern Hemisphere.,.1,United Nations Population Division
-Percentage of the human genome shared with chimpanzees.,.988,National Human Genome Research Institute
-Percentage of astronauts that have been women.,.11,NASA
-Percentage of the world's goods transported by sea.,.9,International Chamber of Shipping
-Percentage of the internet that is the 'Dark Web'.,.05,World Wide Web Foundation
-Percentage of the global population that are twins.,.019,World Health Organization
-Percentage of the earth’s water that is drinkable freshwater.,.025,US Geological Survey
-Percentage of the world's population that are natural redheads.,.02,National Geographic
-Percentage of dreams that are forgotten.,.95,American Psychological Association
-Percentage of the universe that is visible.,.04,NASA
-Percentage of people who can wiggle their ears.,.15,Smithsonian Magazine
-Percentage of DNA humans share with bananas.,.6,National Human Genome Research Institute
-Percentage of the world’s population living on islands.,.1,United Nations
-Percentage of people with an IQ over 130.,.021,American Psychological Association
-Percentage of the world's supply of fresh water that is in the Great Lakes.,.2,Environmental Protection Agency
+Percentage of the Sahara Desert covered by sand dunes.,0.25,National Geographic
+Percentage of the world's population with blue eyes.,0.08,World Atlas
+Percentage of the world's currency that is physical money.,0.08,Federal Reserve
+Percentage of the world’s oxygen that comes from the ocean.,0.5,National Oceanographic and Atmospheric Administration
+Percentage of known marine species affected by ocean acidification.,0.3,United Nations
+Percentage of people living in the Southern Hemisphere.,0.1,United Nations Population Division
+Percentage of the human genome shared with chimpanzees.,0.988,National Human Genome Research Institute
+Percentage of astronauts that have been women.,0.11,NASA
+Percentage of the world's goods transported by sea.,0.9,International Chamber of Shipping
+Percentage of the internet that is the 'Dark Web'.,0.05,World Wide Web Foundation
+Percentage of the global population that are twins.,0.019,World Health Organization
+Percentage of the earth’s water that is drinkable freshwater.,0.025,US Geological Survey
+Percentage of the world's population that are natural redheads.,0.02,National Geographic
+Percentage of dreams that are forgotten.,0.95,American Psychological Association
+Percentage of the universe that is visible.,0.04,NASA
+Percentage of people who can wiggle their ears.,0.15,Smithsonian Magazine
+Percentage of DNA humans share with bananas.,0.6,National Human Genome Research Institute
+Percentage of the world’s population living on islands.,0.1,United Nations
+Percentage of people with an IQ over 130.,0.021,American Psychological Association
+Percentage of the world's supply of fresh water that is in the Great Lakes.,0.2,Environmental Protection Agency
+Global internet penetration rate,0.625,Internet World Stats
+Share of traffic on mobile devices out of total internet traffic worldwide,0.5479999999999999,Statista
+Percentage of emails that are spam,0.85,Securelist
+Percentage of Earth's forests lost since the dawn of agriculture,0.46,World Wildlife Fund
+Share of global carbon dioxide emissions from the transportation sector,0.14,Environmental Protection Agency
+Percentage of the world's coral reefs that have been destroyed,0.5,National Oceanic and Atmospheric Administration
+Percentage of adults worldwide not getting enough physical activity,0.28,World Health Organization
+Share of the global population without access to clean drinking water,0.11,World Health Organization
+Percentage of children under 5 who are underweight globally,0.135,UNICEF
+Share of the world's wealth owned by the richest 1%,0.44,Credit Suisse
+Percentage of small businesses that fail within the first 5 years,0.5,Bureau of Labor Statistics
+Share of global GDP accounted for by the United States,0.244,World Bank
+Percentage of the global population that lives in urban areas,0.55,United Nations
+Share of people worldwide who have never used the internet,0.37,International Telecommunication Union
+Percentage of the world's languages that are endangered,0.43,UNESCO
+Share of the human genome that is identical in all people,0.9990000000000001,National Human Genome Research Institute
+Percentage of Nobel Prizes won by women,0.065,Nobel Prize
+Share of global research and development spending by the United States,0.27,UNESCO
+Percentage of food wasted or lost globally,0.33,Food and Agriculture Organization of the United Nations
+Share of the world's agricultural land used for livestock production,0.77,Food and Agriculture Organization of the United Nations
+Percentage of the global fish stocks that are overexploited,0.34,Food and Agriculture Organization of the United Nations
+Share of global movie box office revenue from the United States,0.3,Motion Picture Association of America
+Percentage of people who play video games that are women,0.46,Entertainment Software Association
+Share of internet users worldwide who use social networks,0.49,Statista
+Percentage of global GDP contributed by travel and tourism,0.10400000000000001,World Travel & Tourism Council
+Share of global carbon emissions from the aviation industry,0.025,International Air Transport Association
+Percentage of UNESCO World Heritage sites that are natural,0.23,UNESCO
+Percentage of the world's population that is left-handed,0.1,Scientific American
+Share of people who can wiggle their ears,0.22,Psychology Today
+Percentage of the universe that is dark matter,0.27,NASA
+Share of the world's public cloud computing market held by Amazon Web Services,0.32,Statista
+Percentage of global internet users who use a mobile device to access the internet,0.9259999999999999,Statista
+Percentage of the Amazon rainforest lost to deforestation as of 2020,0.17,World Wildlife Fund
+Share of global electricity generated by solar power,0.03,International Energy Agency
+Percentage of adults worldwide suffering from hypertension,0.311,World Health Organization
+Share of the global population considered obese,0.13,World Health Organization
+Percentage of global GDP generated by the information technology industry,0.05,World Bank
+Share of small businesses that are owned by women globally,0.3,World Bank
+Percentage of the world population living below the international poverty line of $1.90 a day,0.092,World Bank
+Share of millennials (born 1981-1996) who have never been married,0.59,Pew Research Center
+Share of the world population with at least some secondary education,0.66,UNESCO
+Percentage of scientific research papers published with international collaboration,0.22,UNESCO
+Share of global greenhouse gas emissions from animal-based food production,0.145,Food and Agriculture Organization
+Percentage of the global population facing moderate to severe food insecurity,0.26,FAO
+Percentage of global cinema screens that are digital,0.98,Motion Picture Association
+Share of the global population that participates in eSports,0.22,Newzoo
+Percentage of global travelers who consider sustainable travel a priority,0.72,Booking.com
+Share of global GDP attributed to the travel and tourism sector,0.10400000000000001,World Travel & Tourism Council
+Percentage of people worldwide who are naturally blonde,0.02,World Atlas
+Share of adults who cannot swim,0.37,World Health Organization
+Percentage of the world's data created in the last two years,0.9,IBM
+Share of global population using social media,0.58,We Are Social
+Percentage of global freshwater used in agriculture,0.7,Food and Agriculture Organization
+Share of endangered species threatened by climate change,0.41,IUCN
+Percentage of global adults who suffer from diabetes,0.085,World Health Organization
+Share of the world population with access to improved sanitation facilities,0.68,United Nations
+Percentage of women in managerial positions worldwide,0.29,International Labour Organization
+Share of the global economy represented by the digital economy,0.155,United Nations Conference on Trade and Development
+Percentage of the world's languages that are at risk of disappearing,0.21,UNESCO
+Share of global population living in countries where income inequality is increasing,0.71,OECD
+Share of research and development expenditure of GDP in South Korea,0.045,World Bank
+Percentage of global population that has completed tertiary education,0.08,UNESCO
+Share of global greenhouse gas emissions from deforestation,0.15,World Resources Institute
+Percentage of the global fish stocks that are under sustainable levels of exploitation,0.66,Food and Agriculture Organization
+Percentage of people globally who have attended a live sports event,0.45,Nielsen Sports
+Share of global music industry revenue from streaming,0.56,IFPI
+Percentage of global destinations with COVID-19 travel restrictions,0.65,United Nations World Tourism Organization
+Share of tourism revenue in GDP in the Caribbean,0.4,Caribbean Tourism Organization
+Percentage of adults worldwide who can't read or write,0.14,UNESCO
+Share of the human body made up of water,0.6,U.S. Geological Survey
+Global renewable energy's share of electricity production,0.28,Estimated from International Energy Agency
+Percentage of smartphones recycled annually,0.15,Estimated from Environmental Reports
+Global vaccination coverage rate for DTP3,0.85,World Health Organization
+Share of global population with access to the internet at home,0.6,International Telecommunication Union
+Percentage of global GDP attributed to the digital economy,0.16,United Nations Conference on Trade and Development
+Share of female entrepreneurs worldwide,0.34,World Bank
+Global literacy rate,0.86,UNESCO
+Share of scientific research funding from private sectors,0.25,Estimated from National Science Foundations
+Percentage of people globally who practice meditation regularly,0.05,Global Wellness Institute
+Share of the world population that speaks more than one language,0.43,Estimated from Ethnologue
+Global percentage of food lost or wasted between farm and plate,0.33,Food and Agriculture Organization
+Share of adults worldwide who are lactose intolerant,0.68,Estimated from Medical Journals
+Percentage of global ocean areas protected under national jurisdiction,0.07440000000000001,United Nations Environment Programme
+Share of global carbon emissions from the aviation sector,0.02,International Air Transport Association
+Percentage of the world population that follows soccer/football,0.43,FIFA
+Share of online content consumption that is video,0.8,Cisco
+Share of global GDP generated by the travel and tourism sector post-COVID-19 recovery,0.1,World Travel & Tourism Council
+Percentage of tourists choosing eco-friendly accommodations,0.72,Booking.com
+Share of the world's currency that is digital or 'crypto',0.1,Estimated from Financial Reports
+Percentage of people who believe in extraterrestrial life,0.61,Gallup
