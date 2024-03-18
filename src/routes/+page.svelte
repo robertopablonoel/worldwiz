@@ -8,9 +8,11 @@ import {
 import {
     statements
 } from '../stores.js';
+import confetti from 'canvas-confetti';
 
 let selectedStatements = [];
 let guessCount = 0;
+let gameWon = false;
 let correctOrder = [];
 
 onMount(() => {
@@ -26,7 +28,7 @@ onMount(() => {
                 correct: false,
                 feedback: [],
             }));
-            correctOrder = [...selectedStatements].sort((a, b) => a.answer - b.answer);
+            correctOrder = [...selectedStatements].sort((a, b) => b.answer - a.answer);
         }
     });
 });
@@ -54,6 +56,11 @@ function handleSubmit() {
     });
 
     selectedStatements = [...updatedStatements];
+
+    if (selectedStatements.every(statement => statement.correct)) {
+        gameWon = true;
+        launchConfetti();
+    }
 }
 
 function handleDrop(event) {
@@ -81,9 +88,32 @@ function handleDrop(event) {
 
     selectedStatements = result;
 }
+
+function launchConfetti() {
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: {
+            y: 0.6
+        }
+    });
+}
+
 </script>
 
 <div class="container">
+    {#if gameWon}
+    <div class="congrats-screen">
+        <div class="congrats-content">
+            <h1>Congratulations!</h1>
+            <p>You guessed the correct answer in {guessCount} attempts.</p>
+        </div>
+    </div>
+    {:else if guessCount < 5}
+    <div class='title-container'>
+        <h3>Rank the statements by dragging and dropping to the correct positions...</h3>
+    </div>
+    <div class="arrow-indicator high">▲ High</div>
     <div class="statement-section" use:dndzone={{ items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
         {#each selectedStatements as statement (statement.id)}
         <div class="statement-container {statement.correct ? 'correct' : ''}">
@@ -99,8 +129,16 @@ function handleDrop(event) {
         </div>
         {/each}
     </div>
+    <div class="arrow-indicator low">▼ Low</div>
     <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
     <div class="guess-count">Attempts: {guessCount}</div>
+    {:else}
+    <div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
+        <div class="congrats-content">
+            <h1>Better luck next time!</h1>
+        </div>
+    </div>
+    {/if}
 </div>
 
 <style>
@@ -123,6 +161,11 @@ function handleDrop(event) {
     /* Full width */
 }
 
+.title-container {
+    width: 80%;
+    text-align: center;
+}
+
 .statement-section {
     width: 100%;
     /* Adjust width as needed for mobile responsiveness */
@@ -130,6 +173,15 @@ function handleDrop(event) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.arrow-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Adjust size as needed */
+    color: #FFF; /* Adjust color as needed */
+    margin: 10px 0; /* Spacing above and below the arrows */
 }
 
 .statement-container {
@@ -142,7 +194,7 @@ function handleDrop(event) {
     /* This horizontally centers the content */
     width: 80%;
     max-width: 600px;
-    height: 37px;
+    height: 30px;
     /* Note: You might need to adjust or remove the fixed height to better fit the content */
     margin: 15px 0;
     padding: 20px;
@@ -168,7 +220,7 @@ function handleDrop(event) {
 .statement-container p {
     margin: 0;
     /* Keeps the paragraph snug */
-    font-size: 20px;
+    font-size: 18px;
     /* Ensure you add 'px' to define the unit */
 }
 
@@ -318,5 +370,55 @@ function handleDrop(event) {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.congrats-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 10;
+}
+
+.congrats-content {
+    text-align: center;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.congrats-screen h1 {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 0.5rem;
+}
+
+.congrats-screen p {
+    font-size: 1.25rem;
+    color: #ECEFF1;
+    margin-bottom: 1.5rem;
+}
+
+.congrats-screen button {
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.congrats-screen button:hover {
+    background-color: #45a049;
 }
 </style>
