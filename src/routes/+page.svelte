@@ -84,7 +84,6 @@ function handleDrop(event) {
             {/if}
         </div>
         {/each}
-
     </div>
     <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
     <div class="guess-count">Attempts: {guessCount}</div>
@@ -146,6 +145,12 @@ function handleDrop(event) {
     background-color: #4CAF50;
     /* Green background for correct statements */
 }
+
+.correct {
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
+  }
 
 .correct-badge {
     position: absolute;
