@@ -43,7 +43,9 @@ function handleSubmit() {
         }
 
         // Push new feedback into the feedback array, now as an object indicating correctness
-        statement.feedback.push({ isCorrect });
+        statement.feedback.push({
+            isCorrect
+        });
 
         return {
             ...statement,
@@ -79,23 +81,21 @@ function handleDrop(event) {
 
     selectedStatements = result;
 }
-
-
-
-
 </script>
 
 <div class="container">
     <div class="statement-section" use:dndzone={{ items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
         {#each selectedStatements as statement (statement.id)}
         <div class="statement-container {statement.correct ? 'correct' : ''}">
-            <p>{statement.statement}</p>
-            <!-- Container for feedback badges -->
-            <div class="feedback-container">
-                {#each statement.feedback as badge}
-                    <div class="feedback-badge {badge.isCorrect ? 'correct' : 'incorrect'}"></div>
+            <div class="badge-container">
+                {#each Array(5) as _, index (index)}
+                <div class="feedback-badge {statement.feedback[index] ? (statement.feedback[index].isCorrect ? 'correct' : 'incorrect') : 'default'}"></div>
                 {/each}
             </div>
+            <p>{statement.statement}</p>
+            {#if statement.correct}
+            <div class="percentage-badge">{Math.round(statement.answer * 100)}%</div>
+            {/if}
         </div>
         {/each}
     </div>
@@ -144,10 +144,9 @@ function handleDrop(event) {
     max-width: 600px;
     height: 37px;
     /* Note: You might need to adjust or remove the fixed height to better fit the content */
-    margin: 10px 0;
+    margin: 15px 0;
     padding: 20px;
     background-color: #222;
-    border: none;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: grab;
@@ -156,7 +155,7 @@ function handleDrop(event) {
 }
 
 .statement-container.correct {
-    background-color: #4CAF50;
+    border: 2px solid #45a049;
     /* Green background for correct statements */
 }
 
@@ -164,17 +163,6 @@ function handleDrop(event) {
     -webkit-user-drag: none;
     user-select: none;
     pointer-events: none;
-  }
-
-.correct-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #333;
-    color: white;
-    padding: 5px;
-    border-radius: 0 0 0 5px;
-    font-size: 0.75rem;
 }
 
 .statement-container p {
@@ -188,34 +176,71 @@ function handleDrop(event) {
     cursor: grabbing;
 }
 
-.feedback-container {
+.percentage-badge {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0px;
+    /* Adjust this value as needed */
+    right: 15px;
+    /* Adjust this value as needed */
+    background-color: #ffffff;
+    /* White background for the badge */
+    color: #000000;
+    /* Text color */
+    padding: 5px 10px;
+    /* Padding inside the badge */
+    border-radius: 10px;
+    /* Rounded corners for the badge */
+    font-weight: bold;
+    /* Optional: makes the percentage text bold */
+    z-index: 2;
+    /* Ensure it's above the feedback badges if they overlap */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Optional: adds a subtle shadow */
+    transform: translateY(-50%) translateX(50%);
+    /* Adjusts the badge to partially stick out */
+    white-space: nowrap;
+    /* Prevents the text from wrapping */
+}
+
+.badge-container {
+    position: absolute;
+    top: 0px;
+    left: 0px; /* Adjust this as needed */
     display: flex;
-    align-items: flex-start; /* Aligns children to the start of the flex container */
-    transform: translateY(-50%); /* Moves the badges up to half their height */
-    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+    padding: 5px; /* Adjust padding for better spacing */
+    background: #505050; /* Starting color for gradient */
+    background: linear-gradient(to right, #505050, #3c3c3c); /* Subtle gradient for depth */
+    border-radius: 10px; /* More pronounced rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Refined shadow for a softer look */
+    transform: translateY(-70%); /* Center vertically relative to the statement's top edge */
+    z-index: 10; /* Ensure it sits above other elements */
 }
 
 .feedback-badge {
-    width: 20px; /* Width of the badge */
-    height: 20px; /* Height of the badge */
-    border-radius: 50%; /* Makes the badge circular */
-    margin: 0 2px; /* Spacing between badges */
-    box-sizing: border-box; /* Includes padding and border in the element's size */
+    width: 16px; /* Slightly smaller for a more refined look */
+    height: 16px;
+    border-radius: 50%; /* Fully rounded to create circle shapes */
+    background-color: #a9a9a9; /* Default dark grey for unguessed badges */
+    margin: 0 4px; /* Adjust margin for better spacing */
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
 }
 
-.correct {
+/* When a badge is correct or incorrect, change the background color */
+.feedback-badge.correct {
     background-color: #4CAF50; /* Green for correct */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
 }
 
-.incorrect {
+.feedback-badge.incorrect {
     background-color: #f44336; /* Red for incorrect */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
 }
+
+/* Ensure the default badge does not interfere with the correct/incorrect badges */
+.default {
+    background-color: #a9a9a9; /* Same as initial badge color */
+}
+
 
 .submit-button {
     padding: 15px 30px;
