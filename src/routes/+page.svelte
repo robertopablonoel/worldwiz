@@ -109,7 +109,7 @@ function launchConfetti() {
             <p>You guessed the correct answer in {guessCount} attempts.</p>
         </div>
     </div>
-    {:else if guessCount < 5}
+    {/if}
     <div class="arrow-indicator high">▲ High</div>
     <div class="statement-section" use:dndzone={{ items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
         {#each selectedStatements as statement (statement.id)}
@@ -129,7 +129,7 @@ function launchConfetti() {
     <div class="arrow-indicator low">▼ Low</div>
     <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
     <div class="guess-count">Attempts: {guessCount}</div>
-    {:else}
+    {#if guessCount >= 5 && !gameWon}
     <div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
         <div class="congrats-content">
             <h1>Better luck next time!</h1>
@@ -333,7 +333,7 @@ function launchConfetti() {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.25);
 }
 
 .congrats-content {
@@ -391,8 +391,8 @@ function launchConfetti() {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 10;
+    background-color: rgba(0, 0, 0, .8); /* Fully opaque background */
+    z-index: 50;
 }
 
 .congrats-content {
