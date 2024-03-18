@@ -24,6 +24,7 @@ onMount(() => {
                 ...data[index],
                 id: index,
                 correct: false,
+                feedback: [],
             }));
             correctOrder = [...selectedStatements].sort((a, b) => a.answer - b.answer);
         }
@@ -32,8 +33,18 @@ onMount(() => {
 
 function handleSubmit() {
     guessCount += 1;
+
     const updatedStatements = selectedStatements.map((statement, index) => {
         const isCorrect = correctOrder[index].id === statement.id;
+
+        // Initialize the feedback array if it doesn't exist
+        if (!statement.feedback) {
+            statement.feedback = [];
+        }
+
+        // Push new feedback into the feedback array, now as an object indicating correctness
+        statement.feedback.push({ isCorrect });
+
         return {
             ...statement,
             correct: isCorrect,
@@ -79,9 +90,12 @@ function handleDrop(event) {
         {#each selectedStatements as statement (statement.id)}
         <div class="statement-container {statement.correct ? 'correct' : ''}">
             <p>{statement.statement}</p>
-            {#if statement.correct}
-            <div class="correct-badge">Correct - {statement.answer*100}%</div>
-            {/if}
+            <!-- Container for feedback badges -->
+            <div class="feedback-container">
+                {#each statement.feedback as badge}
+                    <div class="feedback-badge {badge.isCorrect ? 'correct' : 'incorrect'}"></div>
+                {/each}
+            </div>
         </div>
         {/each}
     </div>
@@ -172,6 +186,35 @@ function handleDrop(event) {
 
 .statement-container:active {
     cursor: grabbing;
+}
+
+.feedback-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-start; /* Aligns children to the start of the flex container */
+    transform: translateY(-50%); /* Moves the badges up to half their height */
+    flex-wrap: nowrap;
+}
+
+.feedback-badge {
+    width: 20px; /* Width of the badge */
+    height: 20px; /* Height of the badge */
+    border-radius: 50%; /* Makes the badge circular */
+    margin: 0 2px; /* Spacing between badges */
+    box-sizing: border-box; /* Includes padding and border in the element's size */
+}
+
+.correct {
+    background-color: #4CAF50; /* Green for correct */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
+}
+
+.incorrect {
+    background-color: #f44336; /* Red for incorrect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
 }
 
 .submit-button {
