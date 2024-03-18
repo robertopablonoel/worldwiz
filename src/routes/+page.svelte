@@ -110,9 +110,6 @@ function launchConfetti() {
         </div>
     </div>
     {:else if guessCount < 5}
-    <div class='title-container'>
-        <h3>Rank the statements by dragging and dropping to the correct positions...</h3>
-    </div>
     <div class="arrow-indicator high">▲ High</div>
     <div class="statement-section" use:dndzone={{ items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
         {#each selectedStatements as statement (statement.id)}
@@ -143,20 +140,23 @@ function launchConfetti() {
 
 <style>
 :global(body, html) {
-    height: 100%;
     margin: 0;
     padding: 0;
     background-color: #121212;
     color: #fff;
     font-family: "Roboto", sans-serif;
+    height: 100%;
+    overflow: hidden;
 }
 
 .container {
     display: flex;
+    padding-top: 20px;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    justify-content: flex-start; /* Align content to the top */
+    max-height: 100vh; /* Set max height to viewport height */
+    overflow-y: auto; /* Enable scrolling within container */
     width: 100%;
     /* Full width */
 }
@@ -179,9 +179,9 @@ function launchConfetti() {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px; /* Adjust size as needed */
+    font-size: 16px; /* Adjust size as needed */
     color: #FFF; /* Adjust color as needed */
-    margin: 10px 0; /* Spacing above and below the arrows */
+    margin: 5px 0; /* Spacing above and below the arrows */
 }
 
 .statement-container {
@@ -194,7 +194,7 @@ function launchConfetti() {
     /* This horizontally centers the content */
     width: 80%;
     max-width: 600px;
-    height: 30px;
+    min-height: 30px;
     /* Note: You might need to adjust or remove the fixed height to better fit the content */
     margin: 15px 0;
     padding: 20px;
@@ -220,10 +220,14 @@ function launchConfetti() {
 .statement-container p {
     margin: 0;
     /* Keeps the paragraph snug */
-    font-size: 18px;
+    font-size: 4vw;
     /* Ensure you add 'px' to define the unit */
 }
-
+@media (min-width: 600px) {
+    .statement-container p {
+        font-size: 18px; /* Fixed size for larger screens */
+    }
+}
 .statement-container:active {
     cursor: grabbing;
 }
