@@ -44,8 +44,34 @@ function handleSubmit() {
 }
 
 function handleDrop(event) {
-    selectedStatements = event.detail.items;
+    const newOrder = event.detail.items;
+    let result = [];
+
+    // Initialize the result array with placeholders for the 'correct' items
+    selectedStatements.forEach((item, index) => {
+        result[index] = item.correct ? item : undefined;
+    });
+
+    // Process the new order, skipping 'correct' items
+    newOrder.forEach((item, newIndex) => {
+        if (!item.correct) {
+            // Find the next available spot that is not a 'correct' item
+            let currentIndex = result.findIndex((el, idx) => el === undefined && !selectedStatements[idx].correct);
+            if (currentIndex !== -1) {
+                result[currentIndex] = item;
+            }
+        }
+    });
+
+    // Remove any undefined placeholders left in the result
+    result = result.filter(item => item !== undefined);
+
+    selectedStatements = result;
 }
+
+
+
+
 </script>
 
 <div class="container">
