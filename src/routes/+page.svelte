@@ -197,13 +197,19 @@ function launchConfetti() {
     min-height: 30px;
     /* Note: You might need to adjust or remove the fixed height to better fit the content */
     margin: 15px 0;
-    padding: 20px;
+    padding: 10px;
     background-color: #222;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: grab;
     text-align: center;
     /* This ensures text is centered, useful if the text wraps to a new line */
+}
+
+@media (min-width: 600px) {
+    .statement-container {
+        padding: 20px; /* Fixed size for larger screens */
+    }
 }
 
 .statement-container.correct {
@@ -220,7 +226,7 @@ function launchConfetti() {
 .statement-container p {
     margin: 0;
     /* Keeps the paragraph snug */
-    font-size: 4vw;
+    font-size: 3vw;
     /* Ensure you add 'px' to define the unit */
 }
 @media (min-width: 600px) {
@@ -275,8 +281,8 @@ function launchConfetti() {
 }
 
 .feedback-badge {
-    width: 16px; /* Slightly smaller for a more refined look */
-    height: 16px;
+    width: 12px; /* Slightly smaller for a more refined look */
+    height: 12px;
     border-radius: 50%; /* Fully rounded to create circle shapes */
     background-color: #a9a9a9; /* Default dark grey for unguessed badges */
     margin: 0 4px; /* Adjust margin for better spacing */
