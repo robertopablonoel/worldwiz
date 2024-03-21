@@ -10,10 +10,19 @@ import {
 } from '../stores.js';
 import confetti from 'canvas-confetti';
 
+const BASE_SCORE = 10000;
+const DISTANCE_POINTS = 200;
+const ATTEMPT_PENALTY = .05;
+
 let selectedStatements = [];
+let correctOrder = [];
+let guessMatrix = [];
+
+let finalScore = 0;
 let guessCount = 0;
 let gameWon = false;
-let correctOrder = [];
+let guessMatrixString = "";
+
 
 onMount(() => {
     statements.subscribe(data => {
@@ -59,6 +68,8 @@ function handleSubmit() {
 
     if (selectedStatements.every(statement => statement.correct)) {
         gameWon = true;
+        calculateScore();
+        calculateGuessMatrix();
         launchConfetti();
     }
 }
@@ -67,15 +78,12 @@ function handleDrop(event) {
     const newOrder = event.detail.items;
     let result = [];
 
-    // Initialize the result array with placeholders for the 'correct' items
     selectedStatements.forEach((item, index) => {
         result[index] = item.correct ? item : undefined;
     });
 
-    // Process the new order, skipping 'correct' items
     newOrder.forEach((item, newIndex) => {
         if (!item.correct) {
-            // Find the next available spot that is not a 'correct' item
             let currentIndex = result.findIndex((el, idx) => el === undefined && !selectedStatements[idx].correct);
             if (currentIndex !== -1) {
                 result[currentIndex] = item;
@@ -83,10 +91,18 @@ function handleDrop(event) {
         }
     });
 
-    // Remove any undefined placeholders left in the result
     result = result.filter(item => item !== undefined);
 
     selectedStatements = result;
+}
+
+function calculateScore() {
+    let proximityScore = selectedStatements.reduce((score, statement, index) => {
+        let distance = Math.abs(correctOrder.indexOf(statement) - index);
+        return score - (distance * DISTANCE_POINTS);
+    }, BASE_SCORE);
+
+    finalScore = proximityScore * (1 - ((guessCount - 1) * ATTEMPT_PENALTY));
 }
 
 function launchConfetti() {
@@ -99,6 +115,29 @@ function launchConfetti() {
     });
 }
 
+// function rotateMatrixClockwise(matrix) {
+//     let rotated = [];
+//     for (let i = 0; i < matrix[0].length; i++) {
+//         let row = matrix.map(e => e[i]).reverse();
+//         rotated.push(row);
+//     }
+//     return rotated;
+// }
+
+function calculateGuessMatrix() {
+    let feedbackMatrix = selectedStatements.map(s => s.feedback);
+    guessMatrix = feedbackMatrix.map(row => {
+        let adjustedRow = row.slice();
+        while (adjustedRow.length < 5) {
+            adjustedRow.push({ isCorrect: true });
+        }
+        return adjustedRow;
+    });
+    guessMatrixString = guessMatrix.map(row =>
+        row.map(feedback => feedback.isCorrect ? '🟩' : '🟥').join(' ')
+    ).join('\n');
+}
+
 </script>
 
 <div class="container">
@@ -106,7 +145,17 @@ function launchConfetti() {
     <div class="congrats-screen">
         <div class="congrats-content">
             <h1>Congratulations!</h1>
-            <p>You guessed the correct answer in {guessCount} attempts.</p>
+            <p>ListRank {finalScore} {guessCount}/5</p>
+            {#each guessMatrix as row}
+                {#each row as feedback}
+                    {#if feedback.isCorrect}    
+                        <span>🟩</span>
+                    {:else}
+                        <span>🟥</span>
+                    {/if}
+                {/each}
+                <br>
+            {/each}
         </div>
     </div>
     {/if}
@@ -154,9 +203,12 @@ function launchConfetti() {
     padding-top: 20px;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Align content to the top */
-    max-height: 100vh; /* Set max height to viewport height */
-    overflow-y: auto; /* Enable scrolling within container */
+    justify-content: flex-start;
+    /* Align content to the top */
+    max-height: 100vh;
+    /* Set max height to viewport height */
+    overflow-y: auto;
+    /* Enable scrolling within container */
     width: 100%;
     /* Full width */
 }
@@ -179,9 +231,12 @@ function launchConfetti() {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px; /* Adjust size as needed */
-    color: #FFF; /* Adjust color as needed */
-    margin: 5px 0; /* Spacing above and below the arrows */
+    font-size: 16px;
+    /* Adjust size as needed */
+    color: #FFF;
+    /* Adjust color as needed */
+    margin: 5px 0;
+    /* Spacing above and below the arrows */
 }
 
 .statement-container {
@@ -208,7 +263,8 @@ function launchConfetti() {
 
 @media (min-width: 600px) {
     .statement-container {
-        padding: 20px; /* Fixed size for larger screens */
+        padding: 20px;
+        /* Fixed size for larger screens */
     }
 }
 
@@ -229,11 +285,14 @@ function launchConfetti() {
     font-size: 3vw;
     /* Ensure you add 'px' to define the unit */
 }
+
 @media (min-width: 600px) {
     .statement-container p {
-        font-size: 18px; /* Fixed size for larger screens */
+        font-size: 18px;
+        /* Fixed size for larger screens */
     }
 }
+
 .statement-container:active {
     cursor: grabbing;
 }
@@ -267,42 +326,57 @@ function launchConfetti() {
 .badge-container {
     position: absolute;
     top: 0px;
-    left: 0px; /* Adjust this as needed */
+    left: 0px;
+    /* Adjust this as needed */
     display: flex;
     align-items: center;
     justify-content: start;
-    padding: 5px; /* Adjust padding for better spacing */
-    background: #505050; /* Starting color for gradient */
-    background: linear-gradient(to right, #505050, #3c3c3c); /* Subtle gradient for depth */
-    border-radius: 10px; /* More pronounced rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Refined shadow for a softer look */
-    transform: translateY(-70%); /* Center vertically relative to the statement's top edge */
-    z-index: 10; /* Ensure it sits above other elements */
+    padding: 5px;
+    /* Adjust padding for better spacing */
+    background: #505050;
+    /* Starting color for gradient */
+    background: linear-gradient(to right, #505050, #3c3c3c);
+    /* Subtle gradient for depth */
+    border-radius: 10px;
+    /* More pronounced rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Refined shadow for a softer look */
+    transform: translateY(-70%);
+    /* Center vertically relative to the statement's top edge */
+    z-index: 10;
+    /* Ensure it sits above other elements */
 }
 
 .feedback-badge {
-    width: 12px; /* Slightly smaller for a more refined look */
+    width: 12px;
+    /* Slightly smaller for a more refined look */
     height: 12px;
-    border-radius: 50%; /* Fully rounded to create circle shapes */
-    background-color: #a9a9a9; /* Default dark grey for unguessed badges */
-    margin: 0 4px; /* Adjust margin for better spacing */
-    transition: background-color 0.3s ease; /* Smooth transition for color change */
+    border-radius: 50%;
+    /* Fully rounded to create circle shapes */
+    background-color: #a9a9a9;
+    /* Default dark grey for unguessed badges */
+    margin: 0 4px;
+    /* Adjust margin for better spacing */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for color change */
 }
 
 /* When a badge is correct or incorrect, change the background color */
 .feedback-badge.correct {
-    background-color: #4CAF50; /* Green for correct */
+    background-color: #4CAF50;
+    /* Green for correct */
 }
 
 .feedback-badge.incorrect {
-    background-color: #f44336; /* Red for incorrect */
+    background-color: #f44336;
+    /* Red for incorrect */
 }
 
 /* Ensure the default badge does not interfere with the correct/incorrect badges */
 .default {
-    background-color: #a9a9a9; /* Same as initial badge color */
+    background-color: #a9a9a9;
+    /* Same as initial badge color */
 }
-
 
 .submit-button {
     padding: 15px 30px;
@@ -391,7 +465,8 @@ function launchConfetti() {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, .8); /* Fully opaque background */
+    background-color: rgba(0, 0, 0, .8);
+    /* Fully opaque background */
     z-index: 50;
 }
 
