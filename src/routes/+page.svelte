@@ -124,7 +124,7 @@ function launchConfetti() {
 }
 
 async function shareOrCopyResults() {
-    const shareText = `ListRank (listrank.co) Score: ${finalScore.toLocaleString()} Guesses: ${guessCount}/5\n\n${guessMatrixString}`;
+    const shareText = `WorldWiz (worldwiz.vercel.app) Score: ${finalScore.toLocaleString()} Guesses: ${guessCount}/5\n\n${guessMatrixString}`;
 
     if (navigator.share) {
         try {
@@ -168,7 +168,7 @@ function calculateGuessMatrix() {
     <div class="congrats-screen">
         <div class="congrats-content">
             <h1>Congratulations!</h1>
-            <p>ListRank Score: {finalScore.toLocaleString()} Guesses: {guessCount}/5</p>
+            <p>WorldWiz Score: {finalScore.toLocaleString()} Guesses: {guessCount}/5</p>
             {#each guessMatrix as row}
             {#each row as feedback}
             {#if feedback.isCorrect}
