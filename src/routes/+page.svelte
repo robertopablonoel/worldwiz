@@ -12,7 +12,7 @@ import confetti from 'canvas-confetti';
 
 const BASE_SCORE = 10000;
 const DISTANCE_POINTS = 200;
-const ATTEMPT_PENALTY = .05;
+const ATTEMPT_PENALTY = .1;
 
 let selectedStatements = [];
 let correctOrder = [];
@@ -22,7 +22,6 @@ let finalScore = 0;
 let guessCount = 0;
 let gameWon = false;
 let guessMatrixString = "";
-
 
 onMount(() => {
     statements.subscribe(data => {
@@ -115,21 +114,37 @@ function launchConfetti() {
     });
 }
 
-// function rotateMatrixClockwise(matrix) {
-//     let rotated = [];
-//     for (let i = 0; i < matrix[0].length; i++) {
-//         let row = matrix.map(e => e[i]).reverse();
-//         rotated.push(row);
-//     }
-//     return rotated;
-// }
+async function shareOrCopyResults() {
+    const shareText = `ListRank (listrank.co) Score: ${finalScore}, Attempts: ${guessCount}/5\n\n${guessMatrixString}`;
+
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: 'My Game Results',
+                text: shareText,
+            });
+        } catch (err) {
+            console.error('Error sharing:', err);
+        }
+    } else {
+        try {
+            await navigator.clipboard.writeText(shareText);
+            alert('Results copied to clipboard.');
+        } catch (err) {
+            console.error('Failed to copy:', err);
+            alert('Failed to copy results to clipboard.');
+        }
+    }
+}
 
 function calculateGuessMatrix() {
     let feedbackMatrix = selectedStatements.map(s => s.feedback);
     guessMatrix = feedbackMatrix.map(row => {
         let adjustedRow = row.slice();
         while (adjustedRow.length < 5) {
-            adjustedRow.push({ isCorrect: true });
+            adjustedRow.push({
+                isCorrect: true
+            });
         }
         return adjustedRow;
     });
@@ -137,7 +152,6 @@ function calculateGuessMatrix() {
         row.map(feedback => feedback.isCorrect ? '🟩' : '🟥').join(' ')
     ).join('\n');
 }
-
 </script>
 
 <div class="container">
@@ -145,17 +159,20 @@ function calculateGuessMatrix() {
     <div class="congrats-screen">
         <div class="congrats-content">
             <h1>Congratulations!</h1>
-            <p>ListRank {finalScore} {guessCount}/5</p>
+            <p>ListRank Score: {finalScore}, Attempts: {guessCount}/5</p>
             {#each guessMatrix as row}
                 {#each row as feedback}
-                    {#if feedback.isCorrect}    
-                        <span>🟩</span>
-                    {:else}
-                        <span>🟥</span>
-                    {/if}
+                {#if feedback.isCorrect}
+                    <span>🟩</span>
+                {:else}
+                    <span>🟥</span>
+                {/if}
                 {/each}
                 <br>
             {/each}
+            <button on:click={shareOrCopyResults}>
+                Share Results
+            </button>
         </div>
     </div>
     {/if}
@@ -491,16 +508,19 @@ function calculateGuessMatrix() {
 }
 
 .congrats-screen button {
-    padding: 10px 30px;
-    font-size: 1rem;
-    font-weight: 700;
+    background-color: #58a351;
     color: white;
-    background-color: #4CAF50;
+    border-radius: 104px;
     border: none;
-    border-radius: 5px;
+    font-weight: 700;
+    font: 600 16px/20px;
+    line-height: 16px;
+    height: 44px;
+    width: 198px;
+    vertical-align: middle;
     cursor: pointer;
-    outline: none;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 .congrats-screen button:hover {
