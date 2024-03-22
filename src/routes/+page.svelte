@@ -11,8 +11,8 @@ import {
 import confetti from 'canvas-confetti';
 
 const BASE_SCORE = 10000;
-const DISTANCE_POINTS = 200;
-const ATTEMPT_PENALTY = .1;
+const DISTANCE_POINTS = 350;
+const ATTEMPT_PENALTY = .25;
 
 let selectedStatements = [];
 let correctOrder = [];
@@ -95,7 +95,7 @@ function handleDrop(event) {
 
 function calculateScore() {
     let proximityScore = selectedStatements.reduce((score, statement, index) => {
-        let correctIndex = correctOrder.findIndex(s => s.id === statement.id); // More reliable comparison
+        let correctIndex = correctOrder.findIndex(s => s.id === statement.id);
         let distance = Math.abs(correctIndex - index);
         console.log(`Statement ID: ${statement.id}, Correct Index: ${correctIndex}, Current Index: ${index}, Distance: ${distance}`);
         return score - (distance * DISTANCE_POINTS);
