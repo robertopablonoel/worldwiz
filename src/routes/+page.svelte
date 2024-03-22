@@ -47,12 +47,10 @@ function handleSubmit() {
     const updatedStatements = selectedStatements.map((statement, index) => {
         const isCorrect = correctOrder[index].id === statement.id;
 
-        // Initialize the feedback array if it doesn't exist
         if (!statement.feedback) {
             statement.feedback = [];
         }
 
-        // Push new feedback into the feedback array, now as an object indicating correctness
         statement.feedback.push({
             isCorrect
         });
@@ -97,11 +95,15 @@ function handleDrop(event) {
 
 function calculateScore() {
     let proximityScore = selectedStatements.reduce((score, statement, index) => {
-        let distance = Math.abs(correctOrder.indexOf(statement) - index);
+        let correctIndex = correctOrder.findIndex(s => s.id === statement.id); // More reliable comparison
+        let distance = Math.abs(correctIndex - index);
+        console.log(`Statement ID: ${statement.id}, Correct Index: ${correctIndex}, Current Index: ${index}, Distance: ${distance}`);
         return score - (distance * DISTANCE_POINTS);
     }, BASE_SCORE);
 
+    console.log(`Proximity Score: ${proximityScore}`);
     finalScore = proximityScore * (1 - ((guessCount - 1) * ATTEMPT_PENALTY));
+    console.log(`Final Score: ${finalScore}`);
 }
 
 function launchConfetti() {
@@ -161,14 +163,14 @@ function calculateGuessMatrix() {
             <h1>Congratulations!</h1>
             <p>ListRank Score: {finalScore}, Attempts: {guessCount}/5</p>
             {#each guessMatrix as row}
-                {#each row as feedback}
-                {#if feedback.isCorrect}
-                    <span>🟩</span>
-                {:else}
-                    <span>🟥</span>
-                {/if}
-                {/each}
-                <br>
+            {#each row as feedback}
+            {#if feedback.isCorrect}
+            <span>🟩</span>
+            {:else}
+            <span>🟥</span>
+            {/if}
+            {/each}
+            <br>
             {/each}
             <button on:click={shareOrCopyResults}>
                 Share Results
@@ -221,13 +223,9 @@ function calculateGuessMatrix() {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    /* Align content to the top */
     max-height: 100vh;
-    /* Set max height to viewport height */
     overflow-y: auto;
-    /* Enable scrolling within container */
     width: 100%;
-    /* Full width */
 }
 
 .title-container {
@@ -237,7 +235,6 @@ function calculateGuessMatrix() {
 
 .statement-section {
     width: 100%;
-    /* Adjust width as needed for mobile responsiveness */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -249,25 +246,18 @@ function calculateGuessMatrix() {
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    /* Adjust size as needed */
     color: #FFF;
-    /* Adjust color as needed */
     margin: 5px 0;
-    /* Spacing above and below the arrows */
 }
 
 .statement-container {
     position: relative;
     display: flex;
-    /* This makes it a flex container */
     align-items: center;
-    /* This vertically centers the content */
     justify-content: center;
-    /* This horizontally centers the content */
     width: 80%;
     max-width: 600px;
     min-height: 30px;
-    /* Note: You might need to adjust or remove the fixed height to better fit the content */
     margin: 15px 0;
     padding: 10px;
     background-color: #222;
@@ -275,19 +265,16 @@ function calculateGuessMatrix() {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: grab;
     text-align: center;
-    /* This ensures text is centered, useful if the text wraps to a new line */
 }
 
 @media (min-width: 600px) {
     .statement-container {
         padding: 20px;
-        /* Fixed size for larger screens */
     }
 }
 
 .statement-container.correct {
     border: 2px solid #45a049;
-    /* Green background for correct statements */
 }
 
 .correct {
@@ -298,15 +285,12 @@ function calculateGuessMatrix() {
 
 .statement-container p {
     margin: 0;
-    /* Keeps the paragraph snug */
     font-size: 3vw;
-    /* Ensure you add 'px' to define the unit */
 }
 
 @media (min-width: 600px) {
     .statement-container p {
         font-size: 18px;
-        /* Fixed size for larger screens */
     }
 }
 
@@ -317,82 +301,52 @@ function calculateGuessMatrix() {
 .percentage-badge {
     position: absolute;
     top: 0px;
-    /* Adjust this value as needed */
     right: 15px;
-    /* Adjust this value as needed */
     background-color: #ffffff;
-    /* White background for the badge */
     color: #000000;
-    /* Text color */
     padding: 5px 10px;
-    /* Padding inside the badge */
     border-radius: 10px;
-    /* Rounded corners for the badge */
     font-weight: bold;
-    /* Optional: makes the percentage text bold */
     z-index: 2;
-    /* Ensure it's above the feedback badges if they overlap */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* Optional: adds a subtle shadow */
     transform: translateY(-50%) translateX(50%);
-    /* Adjusts the badge to partially stick out */
     white-space: nowrap;
-    /* Prevents the text from wrapping */
 }
 
 .badge-container {
     position: absolute;
     top: 0px;
     left: 0px;
-    /* Adjust this as needed */
     display: flex;
     align-items: center;
     justify-content: start;
     padding: 5px;
-    /* Adjust padding for better spacing */
-    background: #505050;
-    /* Starting color for gradient */
     background: linear-gradient(to right, #505050, #3c3c3c);
-    /* Subtle gradient for depth */
     border-radius: 10px;
-    /* More pronounced rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Refined shadow for a softer look */
     transform: translateY(-70%);
-    /* Center vertically relative to the statement's top edge */
     z-index: 10;
-    /* Ensure it sits above other elements */
 }
 
 .feedback-badge {
     width: 12px;
-    /* Slightly smaller for a more refined look */
     height: 12px;
     border-radius: 50%;
-    /* Fully rounded to create circle shapes */
     background-color: #a9a9a9;
-    /* Default dark grey for unguessed badges */
     margin: 0 4px;
-    /* Adjust margin for better spacing */
     transition: background-color 0.3s ease;
-    /* Smooth transition for color change */
 }
 
-/* When a badge is correct or incorrect, change the background color */
 .feedback-badge.correct {
     background-color: #4CAF50;
-    /* Green for correct */
 }
 
 .feedback-badge.incorrect {
     background-color: #f44336;
-    /* Red for incorrect */
 }
 
-/* Ensure the default badge does not interfere with the correct/incorrect badges */
 .default {
     background-color: #a9a9a9;
-    /* Same as initial badge color */
 }
 
 .submit-button {
@@ -454,13 +408,13 @@ function calculateGuessMatrix() {
     color: #fff;
 }
 
-/* Customizing the scrollbar for the draggable area, if needed */
 ::-webkit-scrollbar {
     width: 10px;
 }
 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
+
     border-radius: 10px;
 }
 
@@ -483,7 +437,6 @@ function calculateGuessMatrix() {
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, .8);
-    /* Fully opaque background */
     z-index: 50;
 }
 
