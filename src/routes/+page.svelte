@@ -11,13 +11,14 @@ import {
 import confetti from 'canvas-confetti';
 
 const BASE_SCORE = 10000;
-const DISTANCE_POINTS = 350;
-const ATTEMPT_PENALTY = .25;
+const DISTANCE_POINTS = 50;
+const GUESS_PENALTY = .1;
 
 let selectedStatements = [];
 let correctOrder = [];
 let guessMatrix = [];
 
+let proximityScore = BASE_SCORE;
 let finalScore = 0;
 let guessCount = 0;
 let gameWon = false;
@@ -62,6 +63,7 @@ function handleSubmit() {
     });
 
     selectedStatements = [...updatedStatements];
+    calculateProximityScore();
 
     if (selectedStatements.every(statement => statement.correct)) {
         gameWon = true;
@@ -93,16 +95,21 @@ function handleDrop(event) {
     selectedStatements = result;
 }
 
-function calculateScore() {
-    let proximityScore = selectedStatements.reduce((score, statement, index) => {
+function calculateProximityScore() {
+    let startingScore = proximityScore;
+
+    proximityScore = selectedStatements.reduce((score, statement, index) => {
         let correctIndex = correctOrder.findIndex(s => s.id === statement.id);
         let distance = Math.abs(correctIndex - index);
-        console.log(`Statement ID: ${statement.id}, Correct Index: ${correctIndex}, Current Index: ${index}, Distance: ${distance}`);
         return score - (distance * DISTANCE_POINTS);
-    }, BASE_SCORE);
+    }, startingScore);
 
+    console.log(`Current Proximity Score: ${proximityScore}`);
+}
+
+function calculateScore() {
     console.log(`Proximity Score: ${proximityScore}`);
-    finalScore = proximityScore * (1 - ((guessCount - 1) * ATTEMPT_PENALTY));
+    finalScore = proximityScore * (1 - ((guessCount - 1) * GUESS_PENALTY));
     console.log(`Final Score: ${finalScore}`);
 }
 
@@ -117,7 +124,7 @@ function launchConfetti() {
 }
 
 async function shareOrCopyResults() {
-    const shareText = `ListRank (listrank.co) Score: ${finalScore}, Attempts: ${guessCount}/5\n\n${guessMatrixString}`;
+    const shareText = `ListRank (listrank.co) Score: ${finalScore.toLocaleString()} Guesses: ${guessCount}/5\n\n${guessMatrixString}`;
 
     if (navigator.share) {
         try {
@@ -161,7 +168,7 @@ function calculateGuessMatrix() {
     <div class="congrats-screen">
         <div class="congrats-content">
             <h1>Congratulations!</h1>
-            <p>ListRank Score: {finalScore}, Attempts: {guessCount}/5</p>
+            <p>ListRank Score: {finalScore.toLocaleString()} Guesses: {guessCount}/5</p>
             {#each guessMatrix as row}
             {#each row as feedback}
             {#if feedback.isCorrect}
@@ -196,7 +203,7 @@ function calculateGuessMatrix() {
     </div>
     <div class="arrow-indicator low">▼ Low</div>
     <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
-    <div class="guess-count">Attempts: {guessCount}</div>
+    <div class="guess-count">Guesses: {guessCount}</div>
     {#if guessCount >= 5 && !gameWon}
     <div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
         <div class="congrats-content">
