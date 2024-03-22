@@ -196,7 +196,7 @@ function calculateGuessMatrix() {
             </div>
             <p>{statement.statement}</p>
             {#if statement.correct}
-            <div class="percentage-badge">{Math.round(statement.answer)}TB</div>
+            <div class="percentage-badge">{Math.round(statement.answer * 100)}%</div>
             {/if}
         </div>
         {/each}
