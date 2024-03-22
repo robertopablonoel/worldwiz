@@ -186,7 +186,7 @@ function calculateGuessMatrix() {
     </div>
     {/if}
     <div class="arrow-indicator high">▲ High</div>
-    <div class="statement-section" use:dndzone={{ items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
+    <div class="statement-section" use:dndzone={{ morphDisabled: true,items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
         {#each selectedStatements as statement (statement.id)}
         <div class="statement-container {statement.correct ? 'correct' : ''}">
             <div class="badge-container">
