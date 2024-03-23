@@ -64,7 +64,7 @@ onMount(async () => {
     const query = window.location.search;
     if (query.includes("code=") && query.includes("state=")) {
 
-        await auth0Client.handleRedirectCallback();
+        await auth0.handleRedirectCallback();
 
         updateUI();
 
@@ -73,10 +73,15 @@ onMount(async () => {
 });
 
 async function login() {
-    console.log('redirecting to login');
-    await auth0.loginWithRedirect({
+    console.log(`redirecting to login: ${window.location.origin}`);
+
+    const options = {
+      authorizationParams: {
         redirect_uri: window.location.origin
-    });
+      }
+    };
+
+    await auth0.loginWithRedirect(options);
 }
 
 async function logout() {
