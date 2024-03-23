@@ -167,7 +167,7 @@ function calculateGuessMatrix() {
     {#if gameWon}
     <div class="congrats-screen">
         <div class="congrats-content">
-            <h1>Congratulations!</h1>
+            <h1>Lets goooo!</h1>
             <p>Rankenstein Score: {finalScore.toLocaleString()} Guesses: {guessCount}/5</p>
             {#each guessMatrix as row}
             {#each row as feedback}
@@ -281,7 +281,7 @@ function calculateGuessMatrix() {
 }
 
 .statement-container.correct {
-    border: 2px solid #45a049;
+    border: 2px solid #34ae6d;
 }
 
 .correct {
@@ -345,7 +345,7 @@ function calculateGuessMatrix() {
 }
 
 .feedback-badge.correct {
-    background-color: #4CAF50;
+    background-color: #34ae6d;
 }
 
 .feedback-badge.incorrect {
@@ -359,7 +359,7 @@ function calculateGuessMatrix() {
 .submit-button {
     padding: 15px 30px;
     margin: 20px 0;
-    background-color: #4CAF50;
+    background-color: #34ae6d;
     color: white;
     border: none;
     border-radius: 5px;
@@ -369,7 +369,7 @@ function calculateGuessMatrix() {
 }
 
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: #30915d;
 }
 
 .guess-count {
@@ -397,7 +397,7 @@ function calculateGuessMatrix() {
 .submit-button {
     padding: 10px 30px;
     margin-top: 20px;
-    background-color: #4CAF50;
+    background-color: #34ae6d;
     color: white;
     border: none;
     border-radius: 5px;
@@ -407,7 +407,7 @@ function calculateGuessMatrix() {
 }
 
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: #30915d;
 }
 
 .guess-count {
@@ -457,7 +457,7 @@ function calculateGuessMatrix() {
 
 .congrats-screen h1 {
     font-size: 2rem;
-    color: #4CAF50;
+    color: #34ae6d;
     margin-bottom: 0.5rem;
 }
 
@@ -468,7 +468,7 @@ function calculateGuessMatrix() {
 }
 
 .congrats-screen button {
-    background-color: #58a351;
+    background-color: #34ae6d;
     color: white;
     border-radius: 104px;
     border: none;
@@ -480,10 +480,10 @@ function calculateGuessMatrix() {
     vertical-align: middle;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .congrats-screen button:hover {
-    background-color: #45a049;
+    background-color: #30915d;
 }
 </style>
