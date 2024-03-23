@@ -9,6 +9,13 @@ import {
     statements
 } from '../stores.js';
 import confetti from 'canvas-confetti';
+import {
+    createAuth0Client
+} from '@auth0/auth0-spa-js';
+
+let auth0 = null;
+let isAuthenticated = false;
+const fetchAuthConfig = () => fetch("/auth_config.json");
 
 const BASE_SCORE = 10000;
 const DISTANCE_POINTS = 50;
@@ -24,7 +31,7 @@ let guessCount = 0;
 let gameWon = false;
 let guessMatrixString = "";
 
-onMount(() => {
+onMount(async () => {
     statements.subscribe(data => {
         if (data.length >= 5) {
             let indices = new Set();
@@ -40,7 +47,43 @@ onMount(() => {
             correctOrder = [...selectedStatements].sort((a, b) => b.answer - a.answer);
         }
     });
+    const response = await fetchAuthConfig();
+    const config = await response.json();
+
+    auth0 = await createAuth0Client({
+        domain: config.domain,
+        clientId: config.clientId
+    });
+
+    isAuthenticated = await auth0.isAuthenticated();
+
+    if (isAuthenticated) {
+        return;
+    }
+
+    const query = window.location.search;
+    if (query.includes("code=") && query.includes("state=")) {
+
+        await auth0Client.handleRedirectCallback();
+
+        updateUI();
+
+        window.history.replaceState({}, document.title, "/");
+    }
 });
+
+async function login() {
+    console.log('redirecting to login');
+    await auth0.loginWithRedirect({
+        redirect_uri: window.location.origin
+    });
+}
+
+async function logout() {
+    await auth0.logout({
+        returnTo: window.location.origin
+    });
+}
 
 function handleSubmit() {
     guessCount += 1;
@@ -164,6 +207,9 @@ function calculateGuessMatrix() {
 </script>
 
 <div class="container">
+    <button class="auth-button" on:click={isAuthenticated ? logout : login}>
+        {isAuthenticated ? 'Logout' : 'Login'}
+    </button>
     {#if gameWon}
     <div class="congrats-screen">
         <div class="congrats-content">
@@ -222,6 +268,25 @@ function calculateGuessMatrix() {
     font-family: "Roboto", sans-serif;
     height: 100%;
     overflow: hidden;
+}
+
+.auth-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #34ae6d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 100;
+    transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+    background-color: #30915d;
 }
 
 .container {
