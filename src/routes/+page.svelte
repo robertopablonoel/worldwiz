@@ -238,7 +238,7 @@ function calculateGuessMatrix() {
     {isAuthenticated ? 'Logout' : 'Login'}
 </button> -->
 <div>
-    <img src="/favicon.png" alt="Rankenstein Logo" style="width: 100px; margin: 20px;">
+    <img src="/favicon.png" alt="Rankenstein Logo" style="width: 50px; margin: 10px;">
 </div>
 {#if gameWon}
 <div class="congrats-screen">
