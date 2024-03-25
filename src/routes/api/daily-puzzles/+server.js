@@ -3,7 +3,7 @@ import { json } from '@sveltejs/kit';
 
 console.log('API endpoint /api/daily-puzzles loaded');
 
-const START_DATE = new Date('2024-03-24');
+const START_DATE = new Date('2024-03-23T00:00:00-05:00');
 const DB_NAME = 'puzzles';
 const DAILY_PUZZLES = 'daily-puzzles';
 const COUNTERS = 'counters';
@@ -15,25 +15,30 @@ function calculateDayIndex(date, startDate) {
 }
 
 export async function GET() {
-	const today = new Date();
+
+	const utcToday = new Date();
+	const estOffset = 5 * 60 * 60 * 1000; // EST is UTC-5 hours, in milliseconds
+	const today = new Date(utcToday - estOffset);
+
 	const todayIndex = calculateDayIndex(today, START_DATE);
+	console.log(`todayIndex: ${todayIndex} for date: ${today}`);
 
 	const client = await clientPromise;
 	const db = client.db(DB_NAME);
 	const collection = db.collection(DAILY_PUZZLES);
 
 	try {
-		const puzzle = await collection.findOne({ date: todayIndex });
+		const puzzle = await collection.findOne({ day: todayIndex });
 		if (puzzle) {
-			return {
+			return json({
 				status: 200,
-				body: { puzzle }
-			};
+				body: { entries: puzzle.entries }
+			});
 		} else {
-			return {
+			return json({
 				status: 404,
 				body: { error: 'Puzzle not found' }
-			};
+			});
 		}
 	} catch (e) {
 		return {
@@ -49,8 +54,6 @@ export async function POST({request}) {
 	const db = client.db(DB_NAME);
 	const collection = db.collection(DAILY_PUZZLES);
 	const countersCollection = db.collection(COUNTERS);
-
-	console.log(data);
 	
 	if (!data.entries || data.entries.length !== 5) {
 		return {
@@ -64,8 +67,8 @@ export async function POST({request}) {
 			typeof entry.answer === 'number' &&
 			typeof entry.source === 'string' &&
 			entry.source.length > 0 &&
-			typeof entry.question === 'string' &&
-			entry.question.length > 0
+			typeof entry.fact === 'string' &&
+			entry.fact.length > 0
 		);
 	});
 
@@ -73,7 +76,7 @@ export async function POST({request}) {
 		return {
 			status: 400,
 			body: {
-				error: 'Each entry must have a numeric answer and non-empty source and question strings.'
+				error: 'Each entry must have a numeric answer and non-empty source and fact strings.'
 			}
 		};
 	}
@@ -82,7 +85,7 @@ export async function POST({request}) {
 		let dayIndex;
 
 		if (data.date) {
-			dayIndex = calculateDayIndex(data.date);
+			dayIndex = calculateDayIndex(data.date, START_DATE);
 		} else {
 			const counter = await countersCollection.findOneAndUpdate(
 				{ _id: 'dayCounter' },
@@ -93,9 +96,11 @@ export async function POST({request}) {
 			dayIndex = counter.day;
 		}
 
+		console.log(`dayIndex: ${dayIndex} for date: ${data.date}`);
+
 		const response = await collection.updateOne(
 			{ day: dayIndex },
-			{ $set: { entries: data.entries } },
+			{ $set: { isPercentage: data.isPercentage, entries: data.entries } },
 			{ upsert: true }
 		);
 

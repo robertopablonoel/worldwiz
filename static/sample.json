@@ -5,27 +5,27 @@
             {
                 "answer": 0.25,
                 "source": "National Geographic",
-                "question": "Percentage of the Sahara Desert covered by sand dunes."
+                "fact": "Percentage of the Sahara Desert covered by sand dunes."
             },
             {
                 "answer": 0.1,
                 "source": "United Nations Population Division",
-                "question": "Percentage of people living in the Southern Hemisphere."
+                "fact": "Percentage of people living in the Southern Hemisphere."
             },
             {
                 "answer": 0.08,
                 "source": "World Atlas",
-                "question": "Percentage of the world's population with blue eyes."
+                "fact": "Percentage of the world's population with blue eyes."
             },
             {
                 "answer": 0.08,
                 "source": "Federal Reserve",
-                "question": "Percentage of the world's currency that is physical money (not digital)."
+                "fact": "Percentage of the world's currency that is physical money (not digital)."
             },
             {
                 "answer": 0.1,
                 "source": "Estimated from Financial Reports",
-                "question": "Share of the world's currency that is digital or 'crypto'."
+                "fact": "Share of the world's currency that is digital or 'crypto'."
             }
         ]
     },
@@ -35,27 +35,27 @@
             {
                 "answer": 0.5,
                 "source": "National Oceanographic and Atmospheric Administration",
-                "question": "Percentage of the world's oxygen produced by the ocean."
+                "fact": "Percentage of the world's oxygen produced by the ocean."
             },
             {
                 "answer": 0.988,
                 "source": "National Human Genome Research Institute",
-                "question": "Percentage of the human genome shared with chimpanzees."
+                "fact": "Percentage of the human genome shared with chimpanzees."
             },
             {
                 "answer": 0.11,
                 "source": "NASA",
-                "question": "Percentage of astronauts that have been women."
+                "fact": "Percentage of astronauts that have been women."
             },
             {
                 "answer": 0.9,
                 "source": "International Chamber of Shipping",
-                "question": "Percentage of the world's goods transported by sea."
+                "fact": "Percentage of the world's goods transported by sea."
             },
             {
                 "answer": 0.05,
                 "source": "World Wide Web Foundation",
-                "question": "Percentage of the internet that is the 'Dark Web'."
+                "fact": "Percentage of the internet that is the 'Dark Web'."
             }
         ]
     },
@@ -65,27 +65,27 @@
             {
                 "answer": 0.019,
                 "source": "World Health Organization",
-                "question": "Percentage of the global population that are twins."
+                "fact": "Percentage of the global population that are twins."
             },
             {
                 "answer": 0.025,
                 "source": "US Geological Survey",
-                "question": "Percentage of the earth's water that is drinkable freshwater."
+                "fact": "Percentage of the earth's water that is drinkable freshwater."
             },
             {
                 "answer": 0.02,
                 "source": "National Geographic",
-                "question": "Percentage of the world's population with naturally red hair."
+                "fact": "Percentage of the world's population with naturally red hair."
             },
             {
                 "answer": 0.95,
                 "source": "American Psychological Association",
-                "question": "Percentage of dreams that are forgotten."
+                "fact": "Percentage of dreams that are forgotten."
             },
             {
                 "answer": 0.04,
                 "source": "NASA",
-                "question": "Percentage of the universe that is visible to us."
+                "fact": "Percentage of the universe that is visible to us."
             }
         ]
     },
@@ -95,27 +95,27 @@
             {
                 "answer": 0.15,
                 "source": "Smithsonian Magazine",
-                "question": "Percentage of people who can wiggle their ears."
+                "fact": "Percentage of people who can wiggle their ears."
             },
             {
                 "answer": 0.6,
                 "source": "National Human Genome Research Institute",
-                "question": "Percentage of DNA that humans share with bananas."
+                "fact": "Percentage of DNA that humans share with bananas."
             },
             {
                 "answer": 0.1,
                 "source": "United Nations",
-                "question": "Percentage of the world's population living on islands."
+                "fact": "Percentage of the world's population living on islands."
             },
             {
                 "answer": 0.021,
                 "source": "American Psychological Association",
-                "question": "Percentage of people with an IQ over 130."
+                "fact": "Percentage of people with an IQ over 130."
             },
             {
                 "answer": 0.2,
                 "source": "Environmental Protection Agency",
-                "question": "Percentage of the world's supply of fresh water that is in the Great Lakes."
+                "fact": "Percentage of the world's supply of fresh water that is in the Great Lakes."
             }
         ]
     },
@@ -125,27 +125,27 @@
             {
                 "answer": 0.625,
                 "source": "Internet World Stats",
-                "question": "Percentage of the world population that uses the internet."
+                "fact": "Percentage of the world population that uses the internet."
             },
             {
                 "answer": 0.5479999999999999,
                 "source": "Statista",
-                "question": "Share of global internet traffic that comes from mobile devices."
+                "fact": "Share of global internet traffic that comes from mobile devices."
             },
             {
                 "answer": 0.85,
                 "source": "Securelist",
-                "question": "Percentage of emails that are spam."
+                "fact": "Percentage of emails that are spam."
             },
             {
                 "answer": 0.46,
                 "source": "World Wildlife Fund",
-                "question": "Percentage of Earth's forests lost since the dawn of agriculture."
+                "fact": "Percentage of Earth's forests lost since the dawn of agriculture."
             },
             {
                 "answer": 0.14,
                 "source": "Environmental Protection Agency",
-                "question": "Share of global carbon dioxide emissions from the transportation sector."
+                "fact": "Share of global carbon dioxide emissions from the transportation sector."
             }
         ]
     },
@@ -155,27 +155,27 @@
             {
                 "answer": 0.5,
                 "source": "National Oceanic and Atmospheric Administration",
-                "question": "Percentage of the world's coral reefs that have been destroyed."
+                "fact": "Percentage of the world's coral reefs that have been destroyed."
             },
             {
                 "answer": 0.11,
                 "source": "World Health Organization",
-                "question": "Share of the global population without access to clean drinking water."
+                "fact": "Share of the global population without access to clean drinking water."
             },
             {
                 "answer": 0.44,
                 "source": "Credit Suisse",
-                "question": "Share of the world's wealth owned by the richest 1%."
+                "fact": "Share of the world's wealth owned by the richest 1%."
             },
             {
                 "answer": 0.244,
                 "source": "World Bank",
-                "question": "Share of global GDP accounted for by the United States."
+                "fact": "Share of global GDP accounted for by the United States."
             },
             {
                 "answer": 0.55,
                 "source": "United Nations",
-                "question": "Percentage of the global population that lives in urban areas."
+                "fact": "Percentage of the global population that lives in urban areas."
             }
         ]
     },
@@ -185,27 +185,27 @@
             {
                 "answer": 0.37,
                 "source": "International Telecommunication Union",
-                "question": "Share of people worldwide who have never used the internet."
+                "fact": "Share of people worldwide who have never used the internet."
             },
             {
                 "answer": 0.43,
                 "source": "UNESCO",
-                "question": "Percentage of the world's languages that are at risk of extinction."
+                "fact": "Percentage of the world's languages that are at risk of extinction."
             },
             {
                 "answer": 0.999,
                 "source": "National Human Genome Research Institute",
-                "question": "Share of the human genome that is identical in all people."
+                "fact": "Share of the human genome that is identical in all people."
             },
             {
                 "answer": 0.065,
                 "source": "Nobel Prize",
-                "question": "Percentage of Nobel Prizes won by women."
+                "fact": "Percentage of Nobel Prizes won by women."
             },
             {
                 "answer": 0.27,
                 "source": "UNESCO",
-                "question": "Share of global research and development spending by the United States."
+                "fact": "Share of global research and development spending by the United States."
             }
         ]
     },
@@ -215,27 +215,27 @@
             {
                 "answer": 0.33,
                 "source": "Food and Agriculture Organization of the United Nations",
-                "question": "Percentage of food wasted or lost globally."
+                "fact": "Percentage of food wasted or lost globally."
             },
             {
                 "answer": 0.77,
                 "source": "Food and Agriculture Organization of the United Nations",
-                "question": "Share of the world's agricultural land used for livestock production."
+                "fact": "Share of the world's agricultural land used for livestock production."
             },
             {
                 "answer": 0.34,
                 "source": "Food and Agriculture Organization of the United Nations",
-                "question": "Percentage of the global fish population that is overfished."
+                "fact": "Percentage of the global fish population that is overfished."
             },
             {
                 "answer": 0.3,
                 "source": "Motion Picture Association of America",
-                "question": "Share of global movie box office revenue from the United States."
+                "fact": "Share of global movie box office revenue from the United States."
             },
             {
                 "answer": 0.46,
                 "source": "Entertainment Software Association",
-                "question": "Percentage of video game players that are women."
+                "fact": "Percentage of video game players that are women."
             }
         ]
     },
@@ -245,27 +245,27 @@
             {
                 "answer": 0.49,
                 "source": "Statista",
-                "question": "Share of global internet users who use social networks."
+                "fact": "Share of global internet users who use social networks."
             },
             {
                 "answer": 0.104,
                 "source": "World Travel & Tourism Council",
-                "question": "Percentage of global GDP contributed by travel and tourism."
+                "fact": "Percentage of global GDP contributed by travel and tourism."
             },
             {
                 "answer": 0.025,
                 "source": "International Air Transport Association",
-                "question": "Share of global carbon emissions from the aviation industry."
+                "fact": "Share of global carbon emissions from the aviation industry."
             },
             {
                 "answer": 0.1,
                 "source": "Scientific American",
-                "question": "Percentage of the world's population that is left-handed."
+                "fact": "Percentage of the world's population that is left-handed."
             },
             {
                 "answer": 0.27,
                 "source": "NASA",
-                "question": "Percentage of the universe that is dark matter."
+                "fact": "Percentage of the universe that is dark matter."
             }
         ]
     },
@@ -275,27 +275,27 @@
             {
                 "answer": 0.32,
                 "source": "Statista",
-                "question": "Share of the world's public cloud computing market held by Amazon Web Services."
+                "fact": "Share of the world's public cloud computing market held by Amazon Web Services."
             },
             {
                 "answer": 0.17,
                 "source": "World Wildlife Fund",
-                "question": "Percentage of the Amazon rainforest lost to deforestation as of 2020."
+                "fact": "Percentage of the Amazon rainforest lost to deforestation as of 2020."
             },
             {
                 "answer": 0.03,
                 "source": "International Energy Agency",
-                "question": "Share of global electricity generated by solar power."
+                "fact": "Share of global electricity generated by solar power."
             },
             {
                 "answer": 0.311,
                 "source": "World Health Organization",
-                "question": "Percentage of adults worldwide with high blood pressure."
+                "fact": "Percentage of adults worldwide with high blood pressure."
             },
             {
                 "answer": 0.13,
                 "source": "World Health Organization",
-                "question": "Share of the global population that is obese."
+                "fact": "Share of the global population that is obese."
             }
         ]
     },
@@ -305,27 +305,27 @@
             {
                 "answer": 0.05,
                 "source": "World Bank",
-                "question": "Percentage of global GDP generated by the information technology industry."
+                "fact": "Percentage of global GDP generated by the information technology industry."
             },
             {
                 "answer": 0.3,
                 "source": "World Bank",
-                "question": "Share of small businesses globally that are owned by women."
+                "fact": "Share of small businesses globally that are owned by women."
             },
             {
                 "answer": 0.092,
                 "source": "World Bank",
-                "question": "Percentage of the world population living on less than $1.90 per day (the international poverty line)."
+                "fact": "Percentage of the world population living on less than $1.90 per day (the international poverty line)."
             },
             {
                 "answer": 0.59,
                 "source": "Pew Research Center",
-                "question": "Share of millennials (born 1981-1996) who have never been married."
+                "fact": "Share of millennials (born 1981-1996) who have never been married."
             },
             {
                 "answer": 0.66,
                 "source": "UNESCO",
-                "question": "Share of the world population with at least some secondary education."
+                "fact": "Share of the world population with at least some secondary education."
             }
         ]
     },
@@ -335,27 +335,27 @@
             {
                 "answer": 0.22,
                 "source": "UNESCO",
-                "question": "Percentage of scientific research papers with authors from multiple countries."
+                "fact": "Percentage of scientific research papers with authors from multiple countries."
             },
             {
                 "answer": 0.145,
                 "source": "Food and Agriculture Organization",
-                "question": "Share of global greenhouse gas emissions from animal agriculture."
+                "fact": "Share of global greenhouse gas emissions from animal agriculture."
             },
             {
                 "answer": 0.26,
                 "source": "FAO",
-                "question": "Percentage of the global population facing moderate to severe food insecurity."
+                "fact": "Percentage of the global population facing moderate to severe food insecurity."
             },
             {
                 "answer": 0.98,
                 "source": "Motion Picture Association",
-                "question": "Percentage of movie theaters worldwide that have digital screens."
+                "fact": "Percentage of movie theaters worldwide that have digital screens."
             },
             {
                 "answer": 0.22,
                 "source": "Newzoo",
-                "question": "Share of the global population that plays video games competitively (eSports)."
+                "fact": "Share of the global population that plays video games competitively (eSports)."
             }
         ]
     },
@@ -365,27 +365,27 @@
             {
                 "answer": 0.72,
                 "source": "Booking.com",
-                "question": "Percentage of global travelers who say sustainable travel is important to them."
+                "fact": "Percentage of global travelers who say sustainable travel is important to them."
             },
             {
                 "answer": 0.02,
                 "source": "World Atlas",
-                "question": "Percentage of people worldwide who are naturally blonde."
+                "fact": "Percentage of people worldwide who are naturally blonde."
             },
             {
                 "answer": 0.37,
                 "source": "World Health Organization",
-                "question": "Share of adults who cannot swim."
+                "fact": "Share of adults who cannot swim."
             },
             {
                 "answer": 0.9,
                 "source": "IBM",
-                "question": "Percentage of the world's data created in the last two years."
+                "fact": "Percentage of the world's data created in the last two years."
             },
             {
                 "answer": 0.58,
                 "source": "We Are Social",
-                "question": "Share of global population using social media."
+                "fact": "Share of global population using social media."
             }
         ]
     },
@@ -395,27 +395,27 @@
             {
                 "answer": 0.7,
                 "source": "Food and Agriculture Organization",
-                "question": "Percentage of global freshwater used in agriculture."
+                "fact": "Percentage of global freshwater used in agriculture."
             },
             {
                 "answer": 0.41,
                 "source": "IUCN",
-                "question": "Share of endangered species threatened by climate change."
+                "fact": "Share of endangered species threatened by climate change."
             },
             {
                 "answer": 0.085,
                 "source": "World Health Organization",
-                "question": "Percentage of global adults who suffer from diabetes."
+                "fact": "Percentage of global adults who suffer from diabetes."
             },
             {
                 "answer": 0.68,
                 "source": "United Nations",
-                "question": "Share of the world population with access to improved sanitation facilities."
+                "fact": "Share of the world population with access to improved sanitation facilities."
             },
             {
                 "answer": 0.29,
                 "source": "International Labour Organization",
-                "question": "Percentage of women in managerial positions worldwide."
+                "fact": "Percentage of women in managerial positions worldwide."
             }
         ]
     },
@@ -425,27 +425,27 @@
             {
                 "answer": 0.155,
                 "source": "United Nations Conference on Trade and Development",
-                "question": "Share of the global economy represented by the digital economy."
+                "fact": "Share of the global economy represented by the digital economy."
             },
             {
                 "answer": 0.045,
                 "source": "World Bank",
-                "question": "Share of research and development spending compared to GDP in South Korea."
+                "fact": "Share of research and development spending compared to GDP in South Korea."
             },
             {
                 "answer": 0.08,
                 "source": "UNESCO",
-                "question": "Percentage of global population that has completed tertiary education (university or equivalent)."
+                "fact": "Percentage of global population that has completed tertiary education (university or equivalent)."
             },
             {
                 "answer": 0.15,
                 "source": "World Resources Institute",
-                "question": "Share of global greenhouse gas emissions from deforestation."
+                "fact": "Share of global greenhouse gas emissions from deforestation."
             },
             {
                 "answer": 0.66,
                 "source": "Food and Agriculture Organization",
-                "question": "Percentage of the global fish population that is fished at sustainable levels."
+                "fact": "Percentage of the global fish population that is fished at sustainable levels."
             }
         ]
     },
@@ -455,27 +455,27 @@
             {
                 "answer": 0.45,
                 "source": "Nielsen Sports",
-                "question": "Percentage of people globally who have attended a live sports event."
+                "fact": "Percentage of people globally who have attended a live sports event."
             },
             {
                 "answer": 0.56,
                 "source": "IFPI",
-                "question": "Share of global music industry revenue from streaming."
+                "fact": "Share of global music industry revenue from streaming."
             },
             {
                 "answer": 0.4,
                 "source": "Caribbean Tourism Organization",
-                "question": "Share of GDP generated by tourism in the Caribbean."
+                "fact": "Share of GDP generated by tourism in the Caribbean."
             },
             {
                 "answer": 0.14,
                 "source": "UNESCO",
-                "question": "Percentage of adults worldwide who are illiterate."
+                "fact": "Percentage of adults worldwide who are illiterate."
             },
             {
                 "answer": 0.6,
                 "source": "U.S. Geological Survey",
-                "question": "Share of the human body made up of water."
+                "fact": "Share of the human body made up of water."
             }
         ]
     },
@@ -485,27 +485,27 @@
             {
                 "answer": 0.28,
                 "source": "Estimated from International Energy Agency",
-                "question": "Share of global electricity produced by renewable energy sources."
+                "fact": "Share of global electricity produced by renewable energy sources."
             },
             {
                 "answer": 0.15,
                 "source": "Estimated from Environmental Reports",
-                "question": "Percentage of smartphones recycled annually."
+                "fact": "Percentage of smartphones recycled annually."
             },
             {
                 "answer": 0.85,
                 "source": "World Health Organization",
-                "question": "Percentage of one-year-olds worldwide who have received the recommended vaccines."
+                "fact": "Percentage of one-year-olds worldwide who have received the recommended vaccines."
             },
             {
                 "answer": 0.6,
                 "source": "International Telecommunication Union",
-                "question": "Share of global population with internet access at home."
+                "fact": "Share of global population with internet access at home."
             },
             {
                 "answer": 0.16,
                 "source": "United Nations Conference on Trade and Development",
-                "question": "Percentage of global GDP attributed to the digital economy."
+                "fact": "Percentage of global GDP attributed to the digital economy."
             }
         ]
     },
@@ -515,27 +515,27 @@
             {
                 "answer": 0.34,
                 "source": "World Bank",
-                "question": "Share of entrepreneurs globally who are women."
+                "fact": "Share of entrepreneurs globally who are women."
             },
             {
                 "answer": 0.86,
                 "source": "UNESCO",
-                "question": "Percentage of adults worldwide who can read and write."
+                "fact": "Percentage of adults worldwide who can read and write."
             },
             {
                 "answer": 0.25,
                 "source": "Estimated from National Science Foundations",
-                "question": "Share of scientific research funding from private sectors."
+                "fact": "Share of scientific research funding from private sectors."
             },
             {
                 "answer": 0.05,
                 "source": "Global Wellness Institute",
-                "question": "Percentage of people globally who practice meditation regularly."
+                "fact": "Percentage of people globally who practice meditation regularly."
             },
             {
                 "answer": 0.43,
                 "source": "Estimated from Ethnologue",
-                "question": "Share of the world population that speaks more than one language."
+                "fact": "Share of the world population that speaks more than one language."
             }
         ]
     },
@@ -545,27 +545,27 @@
             {
                 "answer": 0.68,
                 "source": "Estimated from Medical Journals",
-                "question": "Share of adults worldwide who are lactose intolerant."
+                "fact": "Share of adults worldwide who are lactose intolerant."
             },
             {
                 "answer": 0.0744,
                 "source": "United Nations Environment Programme",
-                "question": "Percentage of global ocean areas protected by law."
+                "fact": "Percentage of global ocean areas protected by law."
             },
             {
                 "answer": 0.43,
                 "source": "FIFA",
-                "question": "Percentage of the world population that follows soccer/football."
+                "fact": "Percentage of the world population that follows soccer/football."
             },
             {
                 "answer": 0.8,
                 "source": "Cisco",
-                "question": "Share of online content consumption that is video."
+                "fact": "Share of online content consumption that is video."
             },
             {
                 "answer": 0.1,
                 "source": "World Travel & Tourism Council",
-                "question": "Share of global GDP generated by the travel and tourism sector after COVID-19 recovery."
+                "fact": "Share of global GDP generated by the travel and tourism sector after COVID-19 recovery."
             }
         ]
     },
@@ -575,27 +575,27 @@
             {
                 "answer": 0.72,
                 "source": "Booking.com",
-                "question": "Percentage of tourists choosing eco-friendly accommodations."
+                "fact": "Percentage of tourists choosing eco-friendly accommodations."
             },
             {
                 "answer": 0.61,
                 "source": "Gallup",
-                "question": "Percentage of people who believe in extraterrestrial life."
+                "fact": "Percentage of people who believe in extraterrestrial life."
             },
             {
                 "answer": 0.75,
                 "source": "National Geographic",
-                "question": "Percentage of the world's volcanoes located in the 'Ring of Fire'."
+                "fact": "Percentage of the world's volcanoes located in the 'Ring of Fire'."
             },
             {
                 "answer": 0.2,
                 "source": "World Resources Institute",
-                "question": "Share of the global population at risk of flooding by 2050."
+                "fact": "Share of the global population at risk of flooding by 2050."
             },
             {
                 "answer": 0.76,
                 "source": "Pew Research Center",
-                "question": "Percentage of the world's population living in countries with religious freedom."
+                "fact": "Percentage of the world's population living in countries with religious freedom."
             }
         ]
     },
@@ -605,27 +605,27 @@
             {
                 "answer": 0.06,
                 "source": "International Energy Agency",
-                "question": "Share of global electricity generated by wind power."
+                "fact": "Share of global electricity generated by wind power."
             },
             {
                 "answer": 0.03,
                 "source": "United Nations",
-                "question": "Percentage of the world's land surface covered by cities."
+                "fact": "Percentage of the world's land surface covered by cities."
             },
             {
                 "answer": 0.61,
                 "source": "International Labour Organization",
-                "question": "Share of the global labor force in the informal economy (not taxed or monitored by the government)."
+                "fact": "Share of the global labor force in the informal economy (not taxed or monitored by the government)."
             },
             {
                 "answer": 0.16,
                 "source": "Pew Research Center",
-                "question": "Percentage of the world's population that identifies as atheist or non-religious."
+                "fact": "Percentage of the world's population that identifies as atheist or non-religious."
             },
             {
                 "answer": 0.1,
                 "source": "Ellen MacArthur Foundation",
-                "question": "Percentage of global greenhouse gas emissions from the fashion industry."
+                "fact": "Percentage of global greenhouse gas emissions from the fashion industry."
             }
         ]
     },
@@ -635,27 +635,27 @@
             {
                 "answer": 0.9,
                 "source": "World Bank",
-                "question": "Share of the world's population that has access to electricity."
+                "fact": "Share of the world's population that has access to electricity."
             },
             {
                 "answer": 0.9,
                 "source": "Intergovernmental Panel on Climate Change",
-                "question": "Percentage of the world's coral reefs that could be lost by 2050 due to climate change."
+                "fact": "Percentage of the world's coral reefs that could be lost by 2050 due to climate change."
             },
             {
                 "answer": 0.13,
                 "source": "World Health Organization",
-                "question": "Share of the global population that suffers from a mental health disorder."
+                "fact": "Share of the global population that suffers from a mental health disorder."
             },
             {
                 "answer": 0.5,
                 "source": "Food and Agriculture Organization",
-                "question": "Share of the world's land area that is used for agriculture."
+                "fact": "Share of the world's land area that is used for agriculture."
             },
             {
                 "answer": 0.03,
                 "source": "International Maritime Organization",
-                "question": "Share of global carbon emissions from the shipping industry."
+                "fact": "Share of global carbon emissions from the shipping industry."
             }
         ]
     },
@@ -665,27 +665,27 @@
             {
                 "answer": 0.5,
                 "source": "The Lancet",
-                "question": "Share of the global population that has access to safe surgery."
+                "fact": "Share of the global population that has access to safe surgery."
             },
             {
                 "answer": 0.2,
                 "source": "International Association for the Study of Pain",
-                "question": "Percentage of the world's population that suffers from chronic pain."
+                "fact": "Percentage of the world's population that suffers from chronic pain."
             },
             {
                 "answer": 0.3,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in China."
+                "fact": "Share of the world's renewable energy capacity that is in China."
             },
             {
                 "answer": 0.07,
                 "source": "World Steel Association",
-                "question": "Share of global carbon emissions from the steel industry."
+                "fact": "Share of global carbon emissions from the steel industry."
             },
             {
                 "answer": 0.66,
                 "source": "World Health Organization",
-                "question": "Share of the global population that has access to clean cooking fuels."
+                "fact": "Share of the global population that has access to clean cooking fuels."
             }
         ]
     },
@@ -695,27 +695,27 @@
             {
                 "answer": 0.06,
                 "source": "Global Genes",
-                "question": "Percentage of the world's population that suffers from a rare disease."
+                "fact": "Percentage of the world's population that suffers from a rare disease."
             },
             {
                 "answer": 0.25,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Europe."
+                "fact": "Share of the world's renewable energy capacity that is in Europe."
             },
             {
                 "answer": 0.08,
                 "source": "World Business Council for Sustainable Development",
-                "question": "Share of global carbon emissions from the cement industry."
+                "fact": "Share of global carbon emissions from the cement industry."
             },
             {
                 "answer": 0.4,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that suffers from a neglected tropical disease."
+                "fact": "Percentage of the world's population that suffers from a neglected tropical disease."
             },
             {
                 "answer": 0.1,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in the United States."
+                "fact": "Share of the world's renewable energy capacity that is in the United States."
             }
         ]
     },
@@ -725,27 +725,27 @@
             {
                 "answer": 0.12,
                 "source": "Food and Agriculture Organization",
-                "question": "Share of global carbon emissions from the agriculture sector."
+                "fact": "Share of global carbon emissions from the agriculture sector."
             },
             {
                 "answer": 0.73,
                 "source": "World Health Organization",
-                "question": "Share of the global population that has access to basic sanitation services."
+                "fact": "Share of the global population that has access to basic sanitation services."
             },
             {
                 "answer": 0.3,
                 "source": "International League of Dermatological Societies",
-                "question": "Percentage of the world's population that suffers from a skin condition."
+                "fact": "Percentage of the world's population that suffers from a skin condition."
             },
             {
                 "answer": 0.05,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in India."
+                "fact": "Share of the world's renewable energy capacity that is in India."
             },
             {
                 "answer": 0.03,
                 "source": "World Bank",
-                "question": "Share of global carbon emissions from the waste sector."
+                "fact": "Share of global carbon emissions from the waste sector."
             }
         ]
     },
@@ -755,27 +755,27 @@
             {
                 "answer": 0.12,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that suffers from a neurological disorder."
+                "fact": "Percentage of the world's population that suffers from a neurological disorder."
             },
             {
                 "answer": 0.03,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Japan."
+                "fact": "Share of the world's renewable energy capacity that is in Japan."
             },
             {
                 "answer": 0.04,
                 "source": "International Council on Mining and Metals",
-                "question": "Share of global carbon emissions from the mining industry."
+                "fact": "Share of global carbon emissions from the mining industry."
             },
             {
                 "answer": 0.6,
                 "source": "World Health Organization",
-                "question": "Share of the global population that has access to handwashing facilities."
+                "fact": "Share of the global population that has access to handwashing facilities."
             },
             {
                 "answer": 0.06,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that suffers from a genetic disorder."
+                "fact": "Percentage of the world's population that suffers from a genetic disorder."
             }
         ]
     },
@@ -785,27 +785,27 @@
             {
                 "answer": 0.02,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Australia."
+                "fact": "Share of the world's renewable energy capacity that is in Australia."
             },
             {
                 "answer": 0.06,
                 "source": "International Council of Chemical Associations",
-                "question": "Share of global carbon emissions from the chemical industry."
+                "fact": "Share of global carbon emissions from the chemical industry."
             },
             {
                 "answer": 0.05,
                 "source": "American Autoimmune Related Diseases Association",
-                "question": "Percentage of the world's population that suffers from an autoimmune disease."
+                "fact": "Percentage of the world's population that suffers from an autoimmune disease."
             },
             {
                 "answer": 0.02,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Brazil."
+                "fact": "Share of the world's renewable energy capacity that is in Brazil."
             },
             {
                 "answer": 0.08,
                 "source": "World Travel & Tourism Council",
-                "question": "Share of global carbon emissions from the tourism industry."
+                "fact": "Share of global carbon emissions from the tourism industry."
             }
         ]
     },
@@ -815,27 +815,27 @@
             {
                 "answer": 0.04,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Germany."
+                "fact": "Share of the world's renewable energy capacity that is in Germany."
             },
             {
                 "answer": 0.06,
                 "source": "Food and Agriculture Organization",
-                "question": "Share of global carbon emissions from the forestry sector."
+                "fact": "Share of global carbon emissions from the forestry sector."
             },
             {
                 "answer": 0.1,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that suffers from a respiratory disease."
+                "fact": "Percentage of the world's population that suffers from a respiratory disease."
             },
             {
                 "answer": 0.02,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Spain."
+                "fact": "Share of the world's renewable energy capacity that is in Spain."
             },
             {
                 "answer": 0.08,
                 "source": "Ellen MacArthur Foundation",
-                "question": "Share of global carbon emissions from the textile industry."
+                "fact": "Share of global carbon emissions from the textile industry."
             }
         ]
     },
@@ -845,27 +845,27 @@
             {
                 "answer": 0.83,
                 "source": "International Telecommunication Union",
-                "question": "Share of the global population that has access to the internet via mobile devices."
+                "fact": "Share of the global population that has access to the internet via mobile devices."
             },
             {
                 "answer": 0.31,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that suffers from a cardiovascular disease."
+                "fact": "Percentage of the world's population that suffers from a cardiovascular disease."
             },
             {
                 "answer": 0.02,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in Italy."
+                "fact": "Share of the world's renewable energy capacity that is in Italy."
             },
             {
                 "answer": 0.04,
                 "source": "World Economic Forum",
-                "question": "Share of global carbon emissions from the electronics industry."
+                "fact": "Share of global carbon emissions from the electronics industry."
             },
             {
                 "answer": 0.11,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the global population that has access to renewable energy."
+                "fact": "Share of the global population that has access to renewable energy."
             }
         ]
     },
@@ -875,27 +875,27 @@
             {
                 "answer": 0.15,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that suffers from a mental health condition."
+                "fact": "Percentage of the world's population that suffers from a mental health condition."
             },
             {
                 "answer": 0.02,
                 "source": "International Renewable Energy Agency",
-                "question": "Share of the world's renewable energy capacity that is in France."
+                "fact": "Share of the world's renewable energy capacity that is in France."
             },
             {
                 "answer": 0.69,
                 "source": "World Bank",
-                "question": "Percentage of the global adult population with a bank account."
+                "fact": "Percentage of the global adult population with a bank account."
             },
             {
                 "answer": 0.08,
                 "source": "United Nations Population Division",
-                "question": "Percentage of the world's population that lives in a country with a fertility rate above 5 children per woman."
+                "fact": "Percentage of the world's population that lives in a country with a fertility rate above 5 children per woman."
             },
             {
                 "answer": 0.09,
                 "source": "World Health Organization",
-                "question": "Percentage of the global population that lives in a country with a life expectancy under 60 years."
+                "fact": "Percentage of the global population that lives in a country with a life expectancy under 60 years."
             }
         ]
     },
@@ -905,27 +905,27 @@
             {
                 "answer": 0.01,
                 "source": "United Nations Population Division",
-                "question": "Percentage of the world's population that lives in a country with a population under 1 million."
+                "fact": "Percentage of the world's population that lives in a country with a population under 1 million."
             },
             {
                 "answer": 0.09,
                 "source": "United Nations Population Division",
-                "question": "Percentage of the global population that lives in a country with a population growth rate above 3% per year."
+                "fact": "Percentage of the global population that lives in a country with a population growth rate above 3% per year."
             },
             {
                 "answer": 0.33,
                 "source": "World Health Organization",
-                "question": "Percentage of the global population that lacks access to essential medicines."
+                "fact": "Percentage of the global population that lacks access to essential medicines."
             },
             {
                 "answer": 0.11,
                 "source": "United Nations Population Division",
-                "question": "Percentage of the world's population that lives in a country with a sex ratio at birth above 110 boys per 100 girls."
+                "fact": "Percentage of the world's population that lives in a country with a sex ratio at birth above 110 boys per 100 girls."
             },
             {
                 "answer": 0.54,
                 "source": "United Nations Conference on Trade and Development",
-                "question": "Share of global foreign direct investment (FDI) inflows received by developing economies."
+                "fact": "Share of global foreign direct investment (FDI) inflows received by developing economies."
             }
         ]
     },
@@ -935,27 +935,27 @@
             {
                 "answer": 0.13,
                 "source": "United Nations Population Division",
-                "question": "Percentage of the world's population that lives in a country with a median age under 20 years."
+                "fact": "Percentage of the world's population that lives in a country with a median age under 20 years."
             },
             {
                 "answer": 0.71,
                 "source": "World Health Organization",
-                "question": "Percentage of global deaths caused by non-communicable diseases (NCDs)."
+                "fact": "Percentage of global deaths caused by non-communicable diseases (NCDs)."
             },
             {
                 "answer": 0.48,
                 "source": "Times Higher Education World University Rankings",
-                "question": "Share of the world's top 100 universities located in the United States."
+                "fact": "Share of the world's top 100 universities located in the United States."
             },
             {
                 "answer": 0.95,
                 "source": "International Telecommunication Union",
-                "question": "Percentage of the world's population that is covered by a mobile-cellular network signal."
+                "fact": "Percentage of the world's population that is covered by a mobile-cellular network signal."
             },
             {
                 "answer": 0.37,
                 "source": "Stockholm International Peace Research Institute",
-                "question": "Share of global arms exports originating from the United States."
+                "fact": "Share of global arms exports originating from the United States."
             }
         ]
     },
@@ -965,27 +965,27 @@
             {
                 "answer": 0.09,
                 "source": "United Nations Development Programme",
-                "question": "Percentage of the world's population that lives in a country with a Human Development Index (HDI) value below 0.550 (low human development)."
+                "fact": "Percentage of the world's population that lives in a country with a Human Development Index (HDI) value below 0.550 (low human development)."
             },
             {
                 "answer": 0.15,
                 "source": "PwC",
-                "question": "Share of the world's 100 largest public companies by market capitalization headquartered in China."
+                "fact": "Share of the world's 100 largest public companies by market capitalization headquartered in China."
             },
             {
                 "answer": 0.39,
                 "source": "International Labour Organization",
-                "question": "Percentage of the global labor force that is female."
+                "fact": "Percentage of the global labor force that is female."
             },
             {
                 "answer": 0.075,
                 "source": "World Bank",
-                "question": "Share of global GDP generated by the financial services industry."
+                "fact": "Share of global GDP generated by the financial services industry."
             },
             {
                 "answer": 0.65,
                 "source": "World Bank",
-                "question": "Percentage of the world's population living in countries with high income inequality (Gini coefficient above 0.40)."
+                "fact": "Percentage of the world's population living in countries with high income inequality (Gini coefficient above 0.40)."
             }
         ]
     },
@@ -995,27 +995,27 @@
             {
                 "answer": 0.43,
                 "source": "TOP500",
-                "question": "Share of the world's 500 fastest supercomputers located in China."
+                "fact": "Share of the world's 500 fastest supercomputers located in China."
             },
             {
                 "answer": 0.88,
                 "source": "Bank for International Settlements",
-                "question": "Share of global foreign exchange market turnover involving the US dollar."
+                "fact": "Share of global foreign exchange market turnover involving the US dollar."
             },
             {
                 "answer": 0.39,
                 "source": "Inter-Parliamentary Union",
-                "question": "Percentage of the world's population that lives in a country with a parliamentary system of government."
+                "fact": "Percentage of the world's population that lives in a country with a parliamentary system of government."
             },
             {
                 "answer": 0.41,
                 "source": "Interbrand",
-                "question": "Share of the world's 100 most valuable brands that are technology brands."
+                "fact": "Share of the world's 100 most valuable brands that are technology brands."
             },
             {
                 "answer": 0.53,
                 "source": "Amnesty International",
-                "question": "Percentage of the global population that lives in a country where the death penalty is legal."
+                "fact": "Percentage of the global population that lives in a country where the death penalty is legal."
             }
         ]
     },
@@ -1025,27 +1025,27 @@
             {
                 "answer": 0.52,
                 "source": "World Trade Organization",
-                "question": "Share of global merchandise trade conducted through regional trade agreements (RTAs)."
+                "fact": "Share of global merchandise trade conducted through regional trade agreements (RTAs)."
             },
             {
                 "answer": 0.23,
                 "source": "Pew Research Center",
-                "question": "Percentage of the world's population that lives in a country where polygamy is legal."
+                "fact": "Percentage of the world's population that lives in a country where polygamy is legal."
             },
             {
                 "answer": 0.27,
                 "source": "International Labour Organization",
-                "question": "Percentage of the global labor force employed in the agricultural sector."
+                "fact": "Percentage of the global labor force employed in the agricultural sector."
             },
             {
                 "answer": 0.27,
                 "source": "Forbes",
-                "question": "Share of the world's top 100 billionaires that are from the United States."
+                "fact": "Share of the world's top 100 billionaires that are from the United States."
             },
             {
                 "answer": 0.06,
                 "source": "Inter-Parliamentary Union",
-                "question": "Percentage of the world's population that lives in a country where the voting age is below 18 years."
+                "fact": "Percentage of the world's population that lives in a country where the voting age is below 18 years."
             }
         ]
     },
@@ -1055,27 +1055,27 @@
             {
                 "answer": 0.61,
                 "source": "eMarketer",
-                "question": "Share of global advertising spending that is digital."
+                "fact": "Share of global advertising spending that is digital."
             },
             {
                 "answer": 0.59,
                 "source": "Center for Reproductive Rights",
-                "question": "Percentage of the world's population that lives in a country where abortion is broadly legal."
+                "fact": "Percentage of the world's population that lives in a country where abortion is broadly legal."
             },
             {
                 "answer": 0.45,
                 "source": "Airports Council International",
-                "question": "Share of the world's 100 busiest airports by passenger traffic located in the Asia-Pacific region."
+                "fact": "Share of the world's 100 busiest airports by passenger traffic located in the Asia-Pacific region."
             },
             {
                 "answer": 0.32,
                 "source": "Global Initiative to End All Corporal Punishment of Children",
-                "question": "Percentage of the global population that lives in a country where corporal punishment in schools is legal."
+                "fact": "Percentage of the global population that lives in a country where corporal punishment in schools is legal."
             },
             {
                 "answer": 0.38,
                 "source": "Stockholm International Peace Research Institute",
-                "question": "Share of global military spending accounted for by the United States."
+                "fact": "Share of global military spending accounted for by the United States."
             }
         ]
     },
@@ -1085,27 +1085,27 @@
             {
                 "answer": 0.47,
                 "source": "Amnesty International",
-                "question": "Percentage of the world's population that lives in a country where the death penalty is illegal for all crimes."
+                "fact": "Percentage of the world's population that lives in a country where the death penalty is illegal for all crimes."
             },
             {
                 "answer": 0.55,
                 "source": "Alexa Internet",
-                "question": "Share of the world's 100 most visited websites that are in English."
+                "fact": "Share of the world's 100 most visited websites that are in English."
             },
             {
                 "answer": 0.23,
                 "source": "International Labour Organization",
-                "question": "Percentage of the global labor force employed in the manufacturing sector."
+                "fact": "Percentage of the global labor force employed in the manufacturing sector."
             },
             {
                 "answer": 0.24,
                 "source": "BP Statistical Review of World Energy",
-                "question": "Share of global energy consumption accounted for by China."
+                "fact": "Share of global energy consumption accounted for by China."
             },
             {
                 "answer": 0.43,
                 "source": "Pew Research Center",
-                "question": "Percentage of the world's population that lives in a country where blasphemy laws exist."
+                "fact": "Percentage of the world's population that lives in a country where blasphemy laws exist."
             }
         ]
     },
@@ -1115,27 +1115,27 @@
             {
                 "answer": 0.65,
                 "source": "PwC",
-                "question": "Share of the world's 100 most valuable companies by market capitalization that are based in the United States."
+                "fact": "Share of the world's 100 most valuable companies by market capitalization that are based in the United States."
             },
             {
                 "answer": 0.09,
                 "source": "The World Federation of Right to Die Societies",
-                "question": "Percentage of the global population that lives in a country where euthanasia or assisted suicide is legal."
+                "fact": "Percentage of the global population that lives in a country where euthanasia or assisted suicide is legal."
             },
             {
                 "answer": 0.76,
                 "source": "World Bank",
-                "question": "Share of global remittances received by low- and middle-income countries."
+                "fact": "Share of global remittances received by low- and middle-income countries."
             },
             {
                 "answer": 0.23,
                 "source": "International Labour Organization",
-                "question": "Percentage of the world's population that lives in a country where the minimum wage is less than $2 per hour."
+                "fact": "Percentage of the world's population that lives in a country where the minimum wage is less than $2 per hour."
             },
             {
                 "answer": 0.46,
                 "source": "Forbes",
-                "question": "Share of the world's 100 most innovative companies headquartered in the United States."
+                "fact": "Share of the world's 100 most innovative companies headquartered in the United States."
             }
         ]
     },
@@ -1145,22 +1145,22 @@
             {
                 "answer": 0.5,
                 "source": "International Labour Organization",
-                "question": "Percentage of the global labor force employed in the services sector."
+                "fact": "Percentage of the global labor force employed in the services sector."
             },
             {
                 "answer": 0.46,
                 "source": "World Intellectual Property Organization",
-                "question": "Share of global patent applications filed by residents of China."
+                "fact": "Share of global patent applications filed by residents of China."
             },
             {
                 "answer": 0.04,
                 "source": "World Health Organization",
-                "question": "Percentage of the world's population that lives in a country where the sale of alcohol is prohibited."
+                "fact": "Percentage of the world's population that lives in a country where the sale of alcohol is prohibited."
             },
             {
                 "answer": 0.002,
                 "source": "GDS",
-                "question": "Percentage of people who have Javascript explicitly disabled in their browser"
+                "fact": "Percentage of people who have Javascript explicitly disabled in their browser"
             }
         ]
     }

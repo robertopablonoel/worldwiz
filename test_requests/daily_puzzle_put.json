@@ -1,31 +1,67 @@
-{
+[{
 	"data": {
+        "date": "2024-03-26",
+		"isPercentage": false,
 		"entries": [
 			{
-				"answer": 1,
-				"source": "string",
-				"question": "string"
+				"answer": 7000,
+				"source": "https://www.worldwildlife.org/species/tiger",
+				"fact": "Estimated number of wild tigers worldwide"
 			},
 			{
-				"answer": 2,
-				"source": "string",
-				"question": "string"
+				"answer": 6800,
+				"source": "https://www.savetheelephants.org/about-elephants-2-3-2/statistics/",
+				"fact": "Number of African elephants killed for ivory each year"
 			},
 			{
-				"answer": 3,
-				"source": "string",
-				"question": "string"
+				"answer": 5500,
+				"source": "https://www.worldwildlife.org/species/giant-panda",
+				"fact": "Estimated number of giant pandas living in the wild"
 			},
 			{
-				"answer": 4,
-				"source": "string",
-				"question": "string"
+				"answer": 6000,
+				"source": "https://www.iucnredlist.org/species/22737/50661662",
+				"fact": "Number of snow leopards estimated to be living in the wild"
 			},
 			{
-				"answer": 5,
-				"source": "string",
-				"question": "string"
+				"answer": 7200,
+				"source": "https://www.conservation.org/priorities/ocean-conservation",
+				"fact": "Number of Great Barrier Reef coral species"
 			}
 		]
 	}
+},
+{
+    "data": {
+        "date": "2024-03-25",
+        "isPercentage": false,
+        "entries": [
+            {
+                "answer": 63,
+                "source": "https://www.floridamuseum.ufl.edu/shark-attacks/yearly-worldwide-summa…",
+                "fact": "Average number of shark attacks per year"
+            },
+            {
+                "answer": 507,
+                "source": "https://www.bbvaopenmind.com/en/science/bioscience/the-longest-lived-a…",
+                "fact": "Highest recorded age of a sea creature"
+            },
+            {
+                "answer": 25000,
+                "source": "https://wwf.org.au/what-we-do/species/blue-whale/",
+                "fact": "Number of blue whales left"
+            },
+            {
+                "answer": 2121,
+                "source": "https://en.wikipedia.org/wiki/List_of_nuclear_weapons_tests",
+                "fact": "Number of nuclear blast tests conducted since 1945"
+            },
+            {
+                "answer": 3682,
+                "source": "https://oceanservice.noaa.gov/facts/oceandepth.html",
+                "fact": "Average depth of the ocean in meters."
+            }
+        ]
+    }
 }
+]

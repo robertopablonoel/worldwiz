@@ -6,7 +6,8 @@ import {
     onMount
 } from 'svelte';
 import {
-    statements
+    entries,
+    dailyPuzzle
 } from '../stores.js';
 import confetti from 'canvas-confetti';
 import {
@@ -22,7 +23,7 @@ const BASE_SCORE = 10000;
 const DISTANCE_POINTS = 50;
 const GUESS_PENALTY = .1;
 
-let selectedStatements = [];
+let selectedEntries = [];
 let correctOrder = [];
 let guessMatrix = [];
 
@@ -32,22 +33,43 @@ let guessCount = 0;
 let gameWon = false;
 let guessMatrixString = "";
 
+let daily_mode = true;
+
 onMount(async () => {
-    statements.subscribe(data => {
-        if (data.length >= 5) {
-            let indices = new Set();
-            while (indices.size < 5) {
-                indices.add(Math.floor(Math.random() * data.length));
+    if (!daily_mode) {
+        entries.subscribe(data => {
+            if (data.length >= 5) {
+                let indices = new Set();
+                while (indices.size < 5) {
+                    indices.add(Math.floor(Math.random() * data.length));
+                }
+                selectedEntries = [...indices].map(index => ({
+                    ...data[index],
+                    id: index,
+                    correct: false,
+                    feedback: [],
+                    isPercentage: true,
+                }));
+                correctOrder = [...selectedEntries].sort((a, b) => b.answer - a.answer);
             }
-            selectedStatements = [...indices].map(index => ({
-                ...data[index],
-                id: index,
-                correct: false,
-                feedback: [],
-            }));
-            correctOrder = [...selectedStatements].sort((a, b) => b.answer - a.answer);
-        }
-    });
+        });
+    } else {
+        dailyPuzzle.subscribe(data => {
+            if (data.length >= 5) {
+                let indices = new Set();
+                while (indices.size < 5) {
+                    indices.add(Math.floor(Math.random() * data.length));
+                }
+                selectedEntries = [...indices].map(index => ({
+                    ...data[index],
+                    id: index,
+                    correct: false,
+                    feedback: [],
+                }));
+                correctOrder = [...selectedEntries].sort((a, b) => b.answer - a.answer);
+            }
+        });
+    }
     const response = await fetchAuthConfig();
     const config = await response.json();
 
@@ -92,27 +114,27 @@ async function logout() {
 function handleSubmit() {
     guessCount += 1;
 
-    const updatedStatements = selectedStatements.map((statement, index) => {
-        const isCorrect = correctOrder[index].id === statement.id;
+    const updatedEntries = selectedEntries.map((entry, index) => {
+        const isCorrect = correctOrder[index].id === entry.id;
 
-        if (!statement.feedback) {
-            statement.feedback = [];
+        if (!entry.feedback) {
+            entry.feedback = [];
         }
 
-        statement.feedback.push({
+        entry.feedback.push({
             isCorrect
         });
 
         return {
-            ...statement,
+            ...entry,
             correct: isCorrect,
         };
     });
 
-    selectedStatements = [...updatedStatements];
+    selectedEntries = [...updatedEntries];
     calculateProximityScore();
 
-    if (selectedStatements.every(statement => statement.correct)) {
+    if (selectedEntries.every(entry => entry.correct)) {
         gameWon = true;
         calculateScore();
         calculateGuessMatrix();
@@ -124,13 +146,13 @@ function handleDrop(event) {
     const newOrder = event.detail.items;
     let result = [];
 
-    selectedStatements.forEach((item, index) => {
+    selectedEntries.forEach((item, index) => {
         result[index] = item.correct ? item : undefined;
     });
 
     newOrder.forEach((item, newIndex) => {
         if (!item.correct) {
-            let currentIndex = result.findIndex((el, idx) => el === undefined && !selectedStatements[idx].correct);
+            let currentIndex = result.findIndex((el, idx) => el === undefined && !selectedEntries[idx].correct);
             if (currentIndex !== -1) {
                 result[currentIndex] = item;
             }
@@ -139,14 +161,14 @@ function handleDrop(event) {
 
     result = result.filter(item => item !== undefined);
 
-    selectedStatements = result;
+    selectedEntries = result;
 }
 
 function calculateProximityScore() {
     let startingScore = proximityScore;
 
-    proximityScore = selectedStatements.reduce((score, statement, index) => {
-        let correctIndex = correctOrder.findIndex(s => s.id === statement.id);
+    proximityScore = selectedEntries.reduce((score, entry, index) => {
+        let correctIndex = correctOrder.findIndex(s => s.id === entry.id);
         let distance = Math.abs(correctIndex - index);
         return score - (distance * DISTANCE_POINTS);
     }, startingScore);
@@ -194,7 +216,7 @@ async function shareOrCopyResults() {
 }
 
 function calculateGuessMatrix() {
-    let feedbackMatrix = selectedStatements.map(s => s.feedback);
+    let feedbackMatrix = selectedEntries.map(s => s.feedback);
     guessMatrix = feedbackMatrix.map(row => {
         let adjustedRow = row.slice();
         while (adjustedRow.length < 5) {
@@ -235,17 +257,17 @@ function calculateGuessMatrix() {
 </div>
 {/if}
 <div class="arrow-indicator high">▲ High</div>
-<div class="statement-section" use:dndzone={{ morphDisabled: true,items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
-    {#each selectedStatements as statement (statement.id)}
-    <div class="statement-container {statement.correct ? 'correct' : ''}">
+<div class="entry-section" use:dndzone={{ morphDisabled: true,items: selectedEntries, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
+    {#each selectedEntries as entry (entry.id)}
+    <div class="entry-container {entry.correct ? 'correct' : ''}">
         <div class="badge-container">
             {#each Array(5) as _, index (index)}
-            <div class="feedback-badge {statement.feedback[index] ? (statement.feedback[index].isCorrect ? 'correct' : 'incorrect') : 'default'}"></div>
+            <div class="feedback-badge {entry.feedback[index] ? (entry.feedback[index].isCorrect ? 'correct' : 'incorrect') : 'default'}"></div>
             {/each}
         </div>
-        <p>{statement.statement}</p>
-        {#if statement.correct}
-        <div class="percentage-badge">{Math.round(statement.answer * 100)}%</div>
+        <p>{entry.fact}</p>
+        {#if entry.correct}
+        <div class="percentage-badge">{Math.round(entry.answer)}{entry.isPercentage ? '%' : ''}</div>
         {/if}
     </div>
     {/each}
@@ -254,7 +276,7 @@ function calculateGuessMatrix() {
 <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
 <div class="guess-count">Guesses: {guessCount}</div>
 {#if guessCount >= 5 && !gameWon}
-<div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
+<div class="congrats-screen" class:show={selectedEntries.every(entry => entry.correct)}>
     <div class="congrats-content">
         <h1>Better luck next time!</h1>
     </div>
@@ -291,7 +313,7 @@ function calculateGuessMatrix() {
     background-color: #30915d;
 }
 
-.statement-section {
+.entry-section {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -308,7 +330,7 @@ function calculateGuessMatrix() {
     margin: 5px 0;
 }
 
-.statement-container {
+.entry-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -326,12 +348,12 @@ function calculateGuessMatrix() {
 }
 
 @media (min-width: 600px) {
-    .statement-container {
+    .entry-container {
         padding: 20px;
     }
 }
 
-.statement-container.correct {
+.entry-container.correct {
     border: 2px solid #34ae6d;
 }
 
@@ -341,18 +363,18 @@ function calculateGuessMatrix() {
     pointer-events: none;
 }
 
-.statement-container p {
+.entry-container p {
     margin: 0;
     font-size: 3vw;
 }
 
 @media (min-width: 600px) {
-    .statement-container p {
+    .entry-container p {
         font-size: 18px;
     }
 }
 
-.statement-container:active {
+.entry-container:active {
     cursor: grabbing;
 }
 

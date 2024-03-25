@@ -2,18 +2,30 @@
 import { readable } from 'svelte/store';
 import { csv } from 'd3-fetch';
 
-export const statements = readable([], set => {
-    csv('/surprising_statistics_statements_and_answers.csv').then(data => {
-        // Assuming the CSV has columns named 'statement', 'answer', and 'source'
+export const entries = readable([], set => {
+    csv('/surprising_statistics_entries_and_answers.csv').then(data => {
         const formattedData = data.map(d => ({
             statement: d.statement,
             answer: d.answer,
             source: d.source
         }));
         set(formattedData);
-        console.log('Data loaded:', formattedData);
     }).catch(error => {
         console.error('Error loading CSV:', error);
+        set([]);
+    });
+});
+
+export const dailyPuzzle = readable([], set => {
+    fetch('/api/daily-puzzles').then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }).then(data => {
+        set(data.body.entries);
+    }).catch(error => {
+        console.error('Error loading daily puzzles:', error);
         set([]);
     });
 });
