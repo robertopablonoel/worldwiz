@@ -12,6 +12,7 @@ import confetti from 'canvas-confetti';
 import {
     createAuth0Client
 } from '@auth0/auth0-spa-js';
+import { tick }  from 'svelte';
 
 let auth0 = null;
 let isAuthenticated = false;
@@ -65,8 +66,6 @@ onMount(async () => {
     if (query.includes("code=") && query.includes("state=")) {
 
         await auth0.handleRedirectCallback();
-
-        updateUI();
 
         window.history.replaceState({}, document.title, "/");
     }
@@ -211,58 +210,56 @@ function calculateGuessMatrix() {
 }
 </script>
 
-<div class="container">
-    <button class="auth-button" on:click={isAuthenticated ? logout : login}>
-        {isAuthenticated ? 'Logout' : 'Login'}
-    </button>
-    {#if gameWon}
-    <div class="congrats-screen">
-        <div class="congrats-content">
-            <h1>Lets goooo!</h1>
-            <p>Rankenstein Score: {finalScore.toLocaleString()} Guesses: {guessCount}/5</p>
-            {#each guessMatrix as row}
-            {#each row as feedback}
-            {#if feedback.isCorrect}
-            <span>🟩</span>
-            {:else}
-            <span>🟥</span>
-            {/if}
-            {/each}
-            <br>
-            {/each}
-            <button on:click={shareOrCopyResults}>
-                Share Results
-            </button>
-        </div>
-    </div>
-    {/if}
-    <div class="arrow-indicator high">▲ High</div>
-    <div class="statement-section" use:dndzone={{ morphDisabled: true,items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
-        {#each selectedStatements as statement (statement.id)}
-        <div class="statement-container {statement.correct ? 'correct' : ''}">
-            <div class="badge-container">
-                {#each Array(5) as _, index (index)}
-                <div class="feedback-badge {statement.feedback[index] ? (statement.feedback[index].isCorrect ? 'correct' : 'incorrect') : 'default'}"></div>
-                {/each}
-            </div>
-            <p>{statement.statement}</p>
-            {#if statement.correct}
-            <div class="percentage-badge">{Math.round(statement.answer * 100)}%</div>
-            {/if}
-        </div>
+<!-- <button class="auth-button" on:click={isAuthenticated ? logout : login}>
+    {isAuthenticated ? 'Logout' : 'Login'}
+</button> -->
+{#if gameWon}
+<div class="congrats-screen">
+    <div class="congrats-content">
+        <h1>Lets goooo!</h1>
+        <p>Rankenstein Score: {finalScore.toLocaleString()} Guesses: {guessCount}/5</p>
+        {#each guessMatrix as row}
+        {#each row as feedback}
+        {#if feedback.isCorrect}
+        <span>🟩</span>
+        {:else}
+        <span>🟥</span>
+        {/if}
         {/each}
+        <br>
+        {/each}
+        <button on:click={shareOrCopyResults}>
+            Share Results
+        </button>
     </div>
-    <div class="arrow-indicator low">▼ Low</div>
-    <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
-    <div class="guess-count">Guesses: {guessCount}</div>
-    {#if guessCount >= 5 && !gameWon}
-    <div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
-        <div class="congrats-content">
-            <h1>Better luck next time!</h1>
-        </div>
-    </div>
-    {/if}
 </div>
+{/if}
+<div class="arrow-indicator high">▲ High</div>
+<div class="statement-section" use:dndzone={{ morphDisabled: true,items: selectedStatements, flipDurationMs: 300 }} on:consider={handleDrop} on:finalize={handleDrop}>
+    {#each selectedStatements as statement (statement.id)}
+    <div class="statement-container {statement.correct ? 'correct' : ''}">
+        <div class="badge-container">
+            {#each Array(5) as _, index (index)}
+            <div class="feedback-badge {statement.feedback[index] ? (statement.feedback[index].isCorrect ? 'correct' : 'incorrect') : 'default'}"></div>
+            {/each}
+        </div>
+        <p>{statement.statement}</p>
+        {#if statement.correct}
+        <div class="percentage-badge">{Math.round(statement.answer * 100)}%</div>
+        {/if}
+    </div>
+    {/each}
+</div>
+<div class="arrow-indicator low">▼ Low</div>
+<button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
+<div class="guess-count">Guesses: {guessCount}</div>
+{#if guessCount >= 5 && !gameWon}
+<div class="congrats-screen" class:show={selectedStatements.every(statement => statement.correct)}>
+    <div class="congrats-content">
+        <h1>Better luck next time!</h1>
+    </div>
+</div>
+{/if}
 
 <style>
 :global(body, html) {
@@ -292,22 +289,6 @@ function calculateGuessMatrix() {
 
 .auth-button:hover {
     background-color: #30915d;
-}
-
-.container {
-    display: flex;
-    padding-top: 20px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    max-height: 100vh;
-    overflow-y: auto;
-    width: 100%;
-}
-
-.title-container {
-    width: 80%;
-    text-align: center;
 }
 
 .statement-section {
