@@ -24,6 +24,7 @@ const DISTANCE_POINTS = 50;
 const GUESS_PENALTY = .1;
 
 let selectedEntries = [];
+let isPercentage = false;
 let correctOrder = [];
 let guessMatrix = [];
 
@@ -47,25 +48,26 @@ onMount(async () => {
                     ...data[index],
                     id: index,
                     correct: false,
-                    feedback: [],
-                    isPercentage: true,
+                    feedback: []
                 }));
+                isPercentage = true
                 correctOrder = [...selectedEntries].sort((a, b) => b.answer - a.answer);
             }
         });
     } else {
         dailyPuzzle.subscribe(data => {
-            if (data.length >= 5) {
+            if (data.entries.length >= 5) {
                 let indices = new Set();
                 while (indices.size < 5) {
-                    indices.add(Math.floor(Math.random() * data.length));
+                    indices.add(Math.floor(Math.random() * data.entries.length));
                 }
                 selectedEntries = [...indices].map(index => ({
-                    ...data[index],
+                    ...data.entries[index],
                     id: index,
                     correct: false,
                     feedback: [],
                 }));
+                isPercentage = data.isPercentage;
                 correctOrder = [...selectedEntries].sort((a, b) => b.answer - a.answer);
             }
         });
@@ -267,7 +269,7 @@ function calculateGuessMatrix() {
         </div>
         <p>{entry.fact}</p>
         {#if entry.correct}
-        <div class="percentage-badge">{Math.round(entry.answer)}{entry.isPercentage ? '%' : ''}</div>
+        <div class="percentage-badge">{Math.round(entry.answer).toLocaleString()}{isPercentage ? '%' : ''}</div>
         {/if}
     </div>
     {/each}

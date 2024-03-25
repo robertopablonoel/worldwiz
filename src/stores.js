@@ -23,7 +23,7 @@ export const dailyPuzzle = readable([], set => {
         }
         return response.json();
     }).then(data => {
-        set(data.body.entries);
+        set(data.body);
     }).catch(error => {
         console.error('Error loading daily puzzles:', error);
         set([]);
