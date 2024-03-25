@@ -237,6 +237,9 @@ function calculateGuessMatrix() {
 <!-- <button class="auth-button" on:click={isAuthenticated ? logout : login}>
     {isAuthenticated ? 'Logout' : 'Login'}
 </button> -->
+<div>
+    <img src="/favicon.png" alt="Rankenstein Logo" style="width: 100px; margin: 20px;">
+</div>
 {#if gameWon}
 <div class="congrats-screen">
     <div class="congrats-content">
@@ -276,7 +279,6 @@ function calculateGuessMatrix() {
 </div>
 <div class="arrow-indicator low">▼ Low</div>
 <button class="submit-button" on:click={handleSubmit}>Submit Rankings</button>
-<div class="guess-count">Guesses: {guessCount}</div>
 {#if guessCount >= 5 && !gameWon}
 <div class="congrats-screen" class:show={selectedEntries.every(entry => entry.correct)}>
     <div class="congrats-content">
