@@ -3,7 +3,7 @@ import { json } from '@sveltejs/kit';
 
 console.log('API endpoint /api/daily-puzzles loaded');
 
-const START_DATE = new Date('2024-03-22T00:00:00-05:00');
+const START_DATE = new Date('2024-03-23T00:00:00-05:00');
 const DB_NAME = 'puzzles';
 const DAILY_PUZZLES = 'daily-puzzles';
 const COUNTERS = 'counters';
