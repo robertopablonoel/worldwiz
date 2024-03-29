@@ -3,9 +3,9 @@ import { readable } from 'svelte/store';
 import { csv } from 'd3-fetch';
 
 export const entries = readable([], set => {
-    csv('/surprising_statistics_entries_and_answers.csv').then(data => {
+    csv('/surprising_statistics_statements_and_answers.csv').then(data => {
         const formattedData = data.map(d => ({
-            statement: d.statement,
+            fact: d.fact,
             answer: d.answer,
             source: d.source
         }));
